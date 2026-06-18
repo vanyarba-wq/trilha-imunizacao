@@ -1,1 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trilha de Imunização</title>
+<meta name="description" content="Trilha de Imunização — plataforma de assistentes para apoiar a equipe de imunização nas rotinas clínicas, na operação de sistemas e na capacitação contínua.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.css">
+<style>
+/* ===================== VARIÁVEIS GLOBAIS =====================
+   Cada módulo tem 4 variáveis (base, dark, light, border).
+   Para um novo módulo, basta definir um novo conjunto aqui
+   e referenciá-lo no array `modules` no script abaixo.
+================================================================ */
+:root{
+  /* Módulos ativos */
+  --green:#1D9E75;  --green-dark:#0F6E56;  --green-light:#E1F5EE;  --green-border:#5DCAA5;
+  --blue:#2563EB;   --blue-dark:#1E40AF;   --blue-light:#DBEAFE;   --blue-border:#93C5FD;
+  --purple:#7C3AED; --purple-dark:#5B21B6; --purple-light:#EDE9FE; --purple-border:#C4B5FD;
+  /* Módulos futuros — identidade já definida, prontos para ativar */
+  --amber:#D97706;  --amber-dark:#92400E;  --amber-light:#FEF3C7;  --amber-border:#FCD34D;
+  --teal:#0891B2;   --teal-dark:#155E75;   --teal-light:#ECFEFF;   --teal-border:#A5F3FC;
+  --rose:#E11D48;   --rose-dark:#9F1239;   --rose-light:#FFF1F2;   --rose-border:#FDA4AF;
+  /* Neutros e utilitários */
+  --ink:#16191D; --ink-soft:#525960; --ink-faint:#919699;
+  --bg:#FAFAFA; --card:#FFFFFF; --border:#E5E7EA;
+  --gray:#9CA3AF; --gray-dark:#6B7280; --gray-light:#F3F4F6; --gray-border:#E5E7EB;
+  --container:980px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;}
+.container{max-width:var(--container);margin:0 auto;padding:0 24px;}
 
+/* ===================== NAVBAR ===================== */
+.navbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 24px;background:rgba(250,250,250,.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);}
+.nav-brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:14px;color:var(--ink);}
+.nav-logo{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--green) 0%,var(--blue) 50%,var(--purple) 100%);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.nav-logo i{font-size:15px;color:#fff;}
+.nav-links{display:flex;gap:22px;}
+.nav-links a{font-size:13px;color:var(--ink-soft);text-decoration:none;font-weight:500;transition:color .15s;}
+.nav-links a:hover{color:var(--ink);}
+
+/* ===================== HERO ===================== */
+.hero{padding:56px 0 28px;}
+.hero h1{font-size:32px;font-weight:700;letter-spacing:-.02em;margin-bottom:10px;}
+.hero .lead{font-size:15.5px;color:var(--ink-soft);max-width:640px;line-height:1.6;}
+
+/* ===================== HOWTO ===================== */
+.howto{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 18px;margin:24px 0 8px;font-size:13px;color:var(--ink-soft);display:flex;gap:12px;align-items:flex-start;}
+.howto i{color:var(--ink-faint);font-size:18px;margin-top:1px;flex-shrink:0;}
+.howto b{color:var(--ink);}
+
+/* ===================== SECTION HEAD ===================== */
+.section{padding:40px 0;}
+.section-head{margin-bottom:22px;}
+.section-head h2{font-size:20px;font-weight:700;margin-bottom:6px;}
+.section-head p{font-size:13.5px;color:var(--ink-soft);}
+
+/* ===================== CARDS =====================
+   Sistema de cores por módulo: card-{tema}. Para novos módulos,
+   adicione um bloco .card-{tema} seguindo o mesmo padrão.
+================================================================ */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;}
+
+.card{
+  display:block;position:relative;text-decoration:none;color:var(--ink);
+  background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:24px;cursor:pointer;overflow:hidden;
+  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
+  opacity:0;animation:fadeInUp .45s ease forwards;
+}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+.card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(0,0,0,.07);}
+
+.card-badge{position:absolute;top:18px;right:18px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:3px 9px;border-radius:99px;background:var(--gray-light);color:var(--gray-dark);border:1px solid var(--gray-border);}
+
+.card-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+.card-icon i{font-size:23px;color:#fff;}
+
+.card h3{font-size:16.5px;font-weight:600;margin-bottom:7px;}
+.card .card-desc{font-size:13px;color:var(--ink-soft);margin-bottom:18px;min-height:40px;}
+
+.card-cta{font-size:12.5px;font-weight:600;display:inline-flex;align-items:center;gap:5px;}
+.card-cta i{font-size:14px;transition:transform .2s ease;}
+.card:hover .card-cta i{transform:translateX(3px);}
+
+.card-green .card-icon{background:var(--green);} .card-green:hover{border-color:var(--green-border);} .card-green .card-cta{color:var(--green-dark);}
+.card-blue .card-icon{background:var(--blue);} .card-blue:hover{border-color:var(--blue-border);} .card-blue .card-cta{color:var(--blue-dark);}
+.card-purple .card-icon{background:var(--purple);} .card-purple:hover{border-color:var(--purple-border);} .card-purple .card-cta{color:var(--purple-dark);}
+.card-amber .card-icon{background:var(--amber);} .card-amber:hover{border-color:var(--amber-border);} .card-amber .card-cta{color:var(--amber-dark);}
+.card-teal .card-icon{background:var(--teal);} .card-teal:hover{border-color:var(--teal-border);} .card-teal .card-cta{color:var(--teal-dark);}
+.card-rose .card-icon{background:var(--rose);} .card-rose:hover{border-color:var(--rose-border);} .card-rose .card-cta{color:var(--rose-dark);}
+
+.card.card-soon{cursor:default;opacity:.7;}
+.card.card-soon .card-icon{filter:grayscale(.4);}
+.card.card-soon:hover{transform:none;box-shadow:none;border-color:var(--border);}
+.card.card-soon .card-cta{color:var(--gray-dark);}
+
+/* ===================== SOBRE ===================== */
+.sobre p{font-size:13.5px;color:var(--ink-soft);max-width:720px;line-height:1.7;}
+
+/* ===================== TOAST ===================== */
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:12px 22px;border-radius:10px;font-size:13px;font-weight:500;opacity:0;transition:all .25s;pointer-events:none;display:flex;align-items:center;gap:8px;box-shadow:0 8px 24px rgba(0,0,0,.2);z-index:999;max-width:80vw;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.toast i{color:var(--blue-border);flex-shrink:0;}
+
+/* ===================== FOOTER ===================== */
+footer{border-top:1px solid var(--border);padding:24px 0 48px;margin-top:20px;}
+footer p{text-align:center;font-size:11.5px;color:var(--ink-faint);}
+
+/* ===================== RESPONSIVO ===================== */
+@media (max-width:600px){
+  .navbar{padding:12px 16px;}
+  .nav-links{gap:14px;}
+  .hero h1{font-size:26px;}
+  .container{padding:0 18px;}
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-brand"><span class="nav-logo"><i class="ti ti-route"></i></span> Trilha de Imunização</div>
+  <div class="nav-links">
+    <a href="#modulos">Módulos</a>
+    <a href="#sobre">Sobre</a>
+  </div>
+</nav>
+
+<header class="hero container">
+  <h1>Trilha de Imunização</h1>
+  <p class="lead">Uma plataforma de assistentes especializados para apoiar a equipe de imunização na prática clínica, na operação dos sistemas e na capacitação contínua — pensada para crescer junto com as necessidades da equipe.</p>
+  <div class="howto">
+    <i class="ti ti-info-circle"></i>
+    <div><b>Como usar:</b> clique em um módulo ativo para abrir o assistente correspondente. Módulos marcados como "Em desenvolvimento" ainda estão sendo construídos e serão liberados em breve.</div>
+  </div>
+</header>
+
+<main>
+  <section id="modulos" class="container section">
+    <div class="section-head">
+      <h2>Módulos</h2>
+      <p>Escolha o assistente que atende sua necessidade do momento.</p>
+    </div>
+    <div class="cards-grid" id="modules-grid"></div>
+    <noscript><p style="font-size:13px;color:var(--ink-soft);">Ative o JavaScript no navegador para visualizar os módulos.</p></noscript>
+  </section>
+
+  <section id="sobre" class="container section sobre">
+    <div class="section-head">
+      <h2>Sobre o projeto</h2>
+    </div>
+    <p>A Trilha de Imunização reúne, em um só lugar, ferramentas pensadas para o dia a dia de quem trabalha com imunização — da sala de vacina à gestão municipal. Cada módulo gera perguntas prontas para o Claude, facilitando o acesso rápido a informações técnicas, operacionais e de capacitação. A plataforma foi estruturada para crescer: novos módulos serão adicionados conforme novas necessidades da equipe surgirem.</p>
+  </section>
+</main>
+
+<footer class="container">
+  <p>Trilha de Imunização — v1.0.0 · Desenvolvido por Vanelice Felizardo de Souza · Licença MIT</p>
+</footer>
+
+<div class="toast" id="toast"><i class="ti ti-info-circle"></i> <span id="toast-text"></span></div>
+
+<script>
+/* ===================== DADOS DOS MÓDULOS =====================
+   Fonte única para os cartões de navegação. Para adicionar um
+   módulo novo no futuro: insira um objeto aqui (e, se for um tema
+   de cor novo, defina as 4 variáveis correspondentes no :root).
+   Nenhum outro HTML/CSS precisa ser duplicado.
+================================================================ */
+const modules = [
+  { icon:'ti-vaccine',   title:'Assistente PNI Clínico', desc:'Calendário vacinal, erros de imunização, EAPV, cadeia de frio, CRIE e mais.', theme:'green',  href:'clinico/',     status:'active' },
+  { icon:'ti-database',  title:'Assistente Sistemas',    desc:'SI-PNI, e-SUS APS/PEC, SIES — registro, inconsistências, migração e integração.', theme:'blue', href:'sistemas/',    status:'active' },
+  { icon:'ti-school',    title:'Assistente Treinamento', desc:'Apresentações, comunicados, oficinas, estudos de caso, simulações e quiz.', theme:'purple', href:'treinamento/', status:'active' },
+  { icon:'ti-chart-bar', title:'Indicadores',            desc:'Painéis de cobertura vacinal, metas e indicadores de desempenho da equipe.', theme:'amber',  href:'indicadores/', status:'soon' },
+  { icon:'ti-books',     title:'Biblioteca Técnica',     desc:'Manuais, notas técnicas, protocolos e referências do PNI em um só lugar.', theme:'teal',    href:'biblioteca/',  status:'soon' },
+  { icon:'ti-robot',     title:'Ferramentas de IA',      desc:'Recursos de inteligência artificial aplicados à rotina da imunização.', theme:'rose',      href:'ia/',          status:'soon' },
+];
+
+function renderModules(){
+  const grid = document.getElementById('modules-grid');
+  grid.innerHTML = modules.map((m, i) => {
+    const isActive = m.status === 'active';
+    const tagEl = isActive ? 'a' : 'div';
+    const hrefAttr = isActive ? `href="${m.href}"` : '';
+    const clickAttr = isActive ? '' : `onclick="showToast('O módulo &quot;${m.title}&quot; ainda está em desenvolvimento.')"`;
+    const badge = isActive ? '' : '<span class="card-badge">Em desenvolvimento</span>';
+    const cta = isActive ? 'Abrir assistente <i class="ti ti-arrow-right"></i>' : 'Em breve';
+    return `<${tagEl} class="card card-${m.theme} ${isActive ? '' : 'card-soon'}" ${hrefAttr} ${clickAttr} style="animation-delay:${(i*0.06).toFixed(2)}s">
+      ${badge}
+      <div class="card-icon"><i class="ti ${m.icon}"></i></div>
+      <h3>${m.title}</h3>
+      <p class="card-desc">${m.desc}</p>
+      <span class="card-cta">${cta}</span>
+    </${tagEl}>`;
+  }).join('');
+}
+
+function showToast(msg){
+  const t = document.getElementById('toast');
+  document.getElementById('toast-text').textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=> t.classList.remove('show'), 2800);
+}
+
+renderModules();
+</script>
+
+</body>
+</html>
