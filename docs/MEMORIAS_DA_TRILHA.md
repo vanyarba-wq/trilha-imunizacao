@@ -133,3 +133,90 @@ Mas a história continuará sendo a mesma.
 ---
 
 🩵 Construído um tijolinho de cada vez.
+
+# 📅 Memórias da Sprint 2
+
+## A Sprint em que encontramos a identidade da Trilha
+
+Nesta Sprint deixamos de pensar apenas em funcionalidades.
+
+Começamos a construir a identidade, os princípios e a filosofia que irão orientar todas as futuras decisões da plataforma.
+
+Foi durante esta etapa que compreendemos que a Trilha de Imunização não nasceu para competir com os sistemas existentes.
+
+Ela nasceu para facilitar o acesso ao conhecimento oficial sobre imunização, reunindo em um único ambiente informações confiáveis, organizadas e sempre acompanhadas de suas respectivas referências.
+
+Essa decisão passou a orientar toda a arquitetura do projeto.
+
+---
+
+# 💡 Grandes decisões da Sprint
+
+Durante esta Sprint definimos que:
+
+* A plataforma utilizará como referência fontes oficiais e cientificamente reconhecidas.
+* Toda informação técnica deverá indicar claramente sua origem.
+* A Trilha não substituirá sistemas do Ministério da Saúde, mas facilitará o acesso às informações produzidas por eles.
+* A credibilidade será o principal patrimônio da plataforma.
+* Antes de desenvolver funcionalidades, desenvolveremos princípios.
+
+---
+
+# 🌱 Frases que marcaram esta Sprint
+
+> "A credibilidade não é uma funcionalidade da plataforma. Ela é a sua principal característica."
+
+---
+
+> "Não queremos substituir as plataformas existentes. Queremos reunir, organizar e facilitar o acesso ao conhecimento oficial sobre imunização em um único lugar."
+
+---
+
+> "Antes de desenvolver funcionalidades, desenvolvemos princípios. Porque funcionalidades evoluem; princípios permanecem."
+
+---
+
+> "Conhecimento oficial. Organizado para quem cuida."
+
+---
+
+> "Nenhuma informação técnica será publicada sem uma fonte oficial ou cientificamente reconhecida que a sustente."
+
+---
+
+# 😊 Bastidores
+
+Durante uma das conversas surgiu uma observação importante.
+
+A Product Owner comentou que muitas das frases criadas durante as Sprints estavam se perdendo.
+
+Naquele momento nasceu uma decisão que fará parte da cultura da Trilha de Imunização:
+
+Nenhuma boa ideia será perdida.
+
+Nenhuma boa frase será esquecida.
+
+As melhores reflexões passarão a fazer parte das Memórias da Trilha, preservando não apenas o código, mas também a história, os aprendizados e a essência do projeto.
+
+---
+
+# ❤️ Aprendizado da Sprint
+
+Nesta Sprint compreendemos que plataformas podem organizar informações.
+
+Mas somente plataformas construídas sobre princípios conseguem transmitir confiança.
+
+A Trilha de Imunização será construída para que cada profissional saiba exatamente de onde veio cada informação consultada.
+
+Esse compromisso com a transparência será um dos maiores diferenciais do projeto.
+
+---
+# 🧱 Mais um tijolinho
+
+Cada Sprint torna mais clara a missão da Trilha de Imunização.
+
+Hoje não construímos apenas documentos.
+
+Construímos valores.
+
+E valores permanecem.

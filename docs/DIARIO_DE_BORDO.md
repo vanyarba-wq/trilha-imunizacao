@@ -40,3 +40,5 @@ Nesta Sprint compreendemos que um bom software não começa pelo código.
 Ele começa entendendo profundamente o problema que deseja resolver.
 
 Essa compreensão passou a orientar toda a evolução da Trilha de Imunização.
+
+---
