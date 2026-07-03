@@ -220,3 +220,29 @@ Hoje não construímos apenas documentos.
 Construímos valores.
 
 E valores permanecem.
+
+# 🌱 Memórias da Sprint 5
+
+Durante a evolução da plataforma, surgiu uma importante definição sobre sua identidade.
+
+A Trilha de Imunização não será apenas um repositório de documentos ou uma coleção de ferramentas.
+
+Ela será um ambiente vivo, construído para acompanhar a constante evolução da imunização brasileira.
+
+Na imunização, novas vacinas, campanhas, notas técnicas, sistemas de informação e protocolos surgem continuamente. A plataforma deverá evoluir junto com esse cenário, mantendo-se sempre organizada, confiável e alinhada às fontes oficiais.
+
+Frases que passaram a representar a identidade da Trilha:
+
+• "A Trilha de Imunização é um ambiente vivo."
+
+• "Na imunização, a única constante é a atualização."
+
+• "Menos tempo procurando. Mais tempo cuidando das pessoas."
+
+• "Criada na Amazônia. Pensada para o Brasil."
+
+• "Não queremos substituir os sistemas oficiais. Queremos organizar e facilitar o acesso ao conhecimento oficial."
+
+• "Não estamos presos às primeiras ideias. Estamos comprometidos com a melhor solução."
+
+Essa filosofia passa a orientar todas as decisões de arquitetura, design e desenvolvimento da plataforma.
