@@ -58,3 +58,21 @@ Cada imunobiológico será documentado seguindo o mesmo padrão:
 Cada imunobiológico representa uma Unidade de Conhecimento da Trilha de Imunização.
 
 A Inteligência Artificial utilizará essas Unidades de Conhecimento para construir respostas fundamentadas em documentos oficiais, considerando o contexto apresentado pelo usuário.
+
+
+# Como este domínio se conecta à Trilha
+
+Os imunobiológicos representam um dos componentes centrais do Programa Nacional de Imunizações.
+
+Seu estudo envolve diferentes áreas da Trilha de Imunização, entre elas:
+
+- 🇧🇷 Programa Nacional de Imunizações
+- 📅 Calendários Vacinais
+- 🏥 Centros de Referência para Imunobiológicos Especiais (CRIE)
+- 🧊 Rede de Frio e Logística
+- 💻 Sistemas de Informação
+- 🦠 Vigilância em Saúde
+- 🌿 Saúde Indígena
+- 📊 Indicadores e Gestão
+
+Esses relacionamentos permitem compreender não apenas as características de cada imunobiológico, mas também como eles são indicados, armazenados, registrados, monitorados e utilizados na prática dos serviços de vacinação.
