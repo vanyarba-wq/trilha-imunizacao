@@ -1,32 +1,60 @@
-# 📋 CHANGELOG
+# 📖 CHANGELOG
 
-Todas as mudanças relevantes da Trilha de Imunização serão registradas neste documento.
+> Este documento registra a história da construção da Trilha de Imunização.
+>
+> Cada Sprint representa um conjunto de decisões, aprendizados e entregas que contribuíram para a evolução da plataforma.
 
-O objetivo é documentar a evolução da plataforma, da Base de Conhecimento e da arquitetura do projeto.
+Todas as mudanças relevantes da Trilha de Imunização são registradas neste documento.
 
-## Versionamento
-
-As versões representam os grandes marcos da evolução da Trilha.
-
-As sprints registram o trabalho realizado durante a construção de cada versão.
-
-Versão atual:
-
-**v0.1 - Fundação da Plataforma**
+O objetivo é documentar a evolução da plataforma, da Base de Conhecimento e das principais decisões arquitetônicas do projeto.
 
 ---
 
-# Sprint 008 — Consolidação da Base de Conhecimento
+# Versionamento
 
-Data: 07/07/2026
+A Trilha de Imunização utiliza dois níveis de evolução:
 
-## Adicionado
+## Versões
+
+Representam os grandes marcos da evolução da plataforma.
+
+Exemplo:
+
+- v0.1 — Fundação da Plataforma
+- v0.2 — Primeiros Objetos de Conhecimento
+- v0.3 — Navegação Inteligente
+- v1.0 — Primeira versão estável
+
+## Sprints
+
+Cada Sprint registra um conjunto de entregas realizadas durante o desenvolvimento de uma versão.
+
+Uma versão pode conter diversas Sprints.
+
+---
+
+## Versão atual
+
+**v0.1 — Fundação da Plataforma**
+
+---
+
+# Sprint 008 — Consolidação da Engenharia da Base de Conhecimento
+
+
+## Objetivo
+
+Concluir a arquitetura da Base de Conhecimento antes do início da criação dos Objetos de Conhecimento reais.
+
+## Entregas
 
 - Documento TAXONOMIA_DOS_OBJETOS.md.
-- Filosofia da Trilha no README principal.
-- Objetos Relacionados no PNI.
+- MODELO_OBJETO_DE_CONHECIMENTO.md.
+- MODELO_VACINA.md.
+- CRITERIOS_DE_QUALIDADE.md.
+- Filosofia da Trilha incorporada ao README.
 - Relacionamentos entre domínios.
-- Seção "Como este domínio se conecta à Trilha" no domínio Imunobiológicos.
+- Evolução do PNI como primeiro Objeto de Conhecimento.
 
 ## Alterado
 
@@ -39,11 +67,24 @@ Data: 07/07/2026
 - A Base de Conhecimento passa a ser o principal patrimônio da plataforma.
 - A IA passa a ser considerada uma consumidora da Base de Conhecimento.
 - Os Objetos de Conhecimento tornam-se a unidade fundamental da arquitetura.
+- Os Modelos passam a orientar toda a documentação da Base de Conhecimento.
+- Objetos de Conhecimento tornam-se a unidade fundamental da plataforma.
+- A IA passa a ser considerada uma consumidora da Base de Conhecimento.
+
+## Marco da Sprint
+
+Até esta Sprint, os esforços concentraram-se na construção da arquitetura da plataforma.
+
+A partir da próxima Sprint, inicia-se o povoamento da Base de Conhecimento por meio dos primeiros Objetos de Conhecimento.
+
+> "Até aqui construímos a inteligência da plataforma. Daqui para frente construiremos o conhecimento que ela irá organizar."
 
 ## Próxima Sprint
 
-Objetivos
+Objetivos previstos:
 
-- Evoluir o modelo dos Objetos de Conhecimento.
-- Construir o primeiro Objeto de Imunobiológico.
-- consolidar o padrão dos objetos da Trilha.
+- Construção do primeiro Objeto de Conhecimento (BCG).
+- Validação do MODELO_VACINA.
+- Primeira aplicação dos Critérios de Qualidade.
+- Primeira validação completa da arquitetura da Base de Conhecimento.
+
