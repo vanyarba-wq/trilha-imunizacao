@@ -88,3 +88,13 @@ Objetivos previstos:
 - Primeira aplicação dos Critérios de Qualidade.
 - Primeira validação completa da arquitetura da Base de Conhecimento.
 
+
+### Sprint 009
+
+#### Marco
+
+Criação do primeiro Objeto de Conhecimento da Trilha de Imunização.
+
+Objeto inaugurador da Base de Conhecimento:
+
+- BCG
