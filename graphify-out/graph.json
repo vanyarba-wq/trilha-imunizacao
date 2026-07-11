@@ -1,0 +1,321 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "hyperedges": [
+      {
+        "id": "knowledge_base_structure",
+        "label": "Knowledge Base Structural Framework",
+        "nodes": [
+          "conhecimento_arquitetura_da_base",
+          "conhecimento_modelo_objeto_de_conhecimento",
+          "conhecimento_padrao_de_metadados",
+          "conhecimento_taxonomia_dos_objetos",
+          "conhecimento_criterios_de_qualidade"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0
+      },
+      {
+        "id": "immunization_domain_entities",
+        "label": "Immunization Domain Entities",
+        "nodes": [
+          "conhecimento_programa_nacional_imunizacoes_pni",
+          "conhecimento_imunobiologicos_vacinas_bcg_bcg"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "label": "Changelog",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "community": 0,
+      "norm_label": "changelog",
+      "id": "changelog",
+      "community_name": "Quality and Taxonomy Standards"
+    },
+    {
+      "label": "Trilha de Imuniza\u00e7\u00e3o README",
+      "file_type": "document",
+      "source_file": "README.md",
+      "community": 8,
+      "norm_label": "trilha de imunizacao readme",
+      "id": "readme",
+      "community_name": "Trilha de Imuniza\u00e7\u00e3o README"
+    },
+    {
+      "label": "Trilha de Imuniza\u00e7\u00e3o Home",
+      "file_type": "code",
+      "source_file": "index.html",
+      "community": 3,
+      "norm_label": "trilha de imunizacao home",
+      "id": "index_html",
+      "community_name": "Visual Identity and Home"
+    },
+    {
+      "label": "Arquitetura da Base de Conhecimento",
+      "file_type": "document",
+      "source_file": "conhecimento/ARQUITETURA_DA_BASE.md",
+      "community": 1,
+      "norm_label": "arquitetura da base de conhecimento",
+      "id": "conhecimento_arquitetura_da_base",
+      "community_name": "Knowledge Base Architecture"
+    },
+    {
+      "label": "Crit\u00e9rios de Qualidade",
+      "file_type": "document",
+      "source_file": "conhecimento/CRITERIOS_DE_QUALIDADE.md",
+      "community": 0,
+      "norm_label": "criterios de qualidade",
+      "id": "conhecimento_criterios_de_qualidade",
+      "community_name": "Quality and Taxonomy Standards"
+    },
+    {
+      "label": "Guia Editorial",
+      "file_type": "document",
+      "source_file": "conhecimento/GUIA_EDITORIAL.md",
+      "community": 4,
+      "norm_label": "guia editorial",
+      "id": "conhecimento_guia_editorial",
+      "community_name": "Editorial Guidelines"
+    },
+    {
+      "label": "Modelo de Objeto de Conhecimento",
+      "file_type": "document",
+      "source_file": "conhecimento/MODELO_OBJETO_DE_CONHECIMENTO.md",
+      "community": 1,
+      "norm_label": "modelo de objeto de conhecimento",
+      "id": "conhecimento_modelo_objeto_de_conhecimento",
+      "community_name": "Knowledge Base Architecture"
+    },
+    {
+      "label": "Padr\u00e3o de Metadados",
+      "file_type": "document",
+      "source_file": "conhecimento/PADRAO_DE_METADADOS.md",
+      "community": 2,
+      "norm_label": "padrao de metadados",
+      "id": "conhecimento_padrao_de_metadados",
+      "community_name": "Immunization Metadata Standards"
+    },
+    {
+      "label": "Taxonomia dos Objetos",
+      "file_type": "document",
+      "source_file": "conhecimento/TAXONOMIA_DOS_OBJETOS.md",
+      "community": 0,
+      "norm_label": "taxonomia dos objetos",
+      "id": "conhecimento_taxonomia_dos_objetos",
+      "community_name": "Quality and Taxonomy Standards"
+    },
+    {
+      "label": "Modelo de Imunobiol\u00f3gico",
+      "file_type": "document",
+      "source_file": "conhecimento/imunobiologicos/MODELO.md",
+      "community": 5,
+      "norm_label": "modelo de imunobiologico",
+      "id": "conhecimento_imunobiologicos_modelo",
+      "community_name": "Immunobiological Data Model"
+    },
+    {
+      "label": "Modelo de Vacina",
+      "file_type": "document",
+      "source_file": "conhecimento/imunobiologicos/vacinas/MODELO_VACINA.md",
+      "community": 0,
+      "norm_label": "modelo de vacina",
+      "id": "conhecimento_imunobiologicos_vacinas_modelo_vacina",
+      "community_name": "Quality and Taxonomy Standards"
+    },
+    {
+      "label": "Objeto de Conhecimento: BCG",
+      "file_type": "document",
+      "source_file": "conhecimento/imunobiologicos/vacinas/bcg/BCG.md",
+      "community": 2,
+      "norm_label": "objeto de conhecimento: bcg",
+      "id": "conhecimento_imunobiologicos_vacinas_bcg_bcg",
+      "community_name": "Immunization Metadata Standards"
+    },
+    {
+      "label": "Programa Nacional de Imuniza\u00e7\u00f5es (PNI)",
+      "file_type": "document",
+      "source_file": "conhecimento/programa_nacional_imunizacoes/PNI.md",
+      "community": 2,
+      "norm_label": "programa nacional de imunizacoes (pni)",
+      "id": "conhecimento_programa_nacional_imunizacoes_pni",
+      "community_name": "Immunization Metadata Standards"
+    },
+    {
+      "label": "Arquitetura da Trilha",
+      "file_type": "document",
+      "source_file": "docs/ARQUITETURA_DA_TRILHA.md",
+      "community": 6,
+      "norm_label": "arquitetura da trilha",
+      "id": "docs_arquitetura_da_trilha",
+      "community_name": "Arquitetura da Trilha"
+    },
+    {
+      "label": "Guia de Identidade Visual",
+      "file_type": "document",
+      "source_file": "docs/GUIA_IDENTIDADE_VISUAL.md",
+      "community": 3,
+      "norm_label": "guia de identidade visual",
+      "id": "docs_guia_identidade_visual",
+      "community_name": "Visual Identity and Home"
+    },
+    {
+      "label": "N\u00facleo do Conhecimento",
+      "file_type": "document",
+      "source_file": "docs/NUCLEO_DO_CONHECIMENTO.md",
+      "community": 1,
+      "norm_label": "nucleo do conhecimento",
+      "id": "docs_nucleo_do_conhecimento",
+      "community_name": "Knowledge Base Architecture"
+    },
+    {
+      "label": "Princ\u00edpios da Plataforma",
+      "file_type": "document",
+      "source_file": "docs/PRINCIPIOS_DA_PLATAFORMA.md",
+      "community": 7,
+      "norm_label": "principios da plataforma",
+      "id": "docs_principios_da_plataforma",
+      "community_name": "Princ\u00edpios da Plataforma"
+    }
+  ],
+  "links": [
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CHANGELOG.md",
+      "source": "changelog",
+      "target": "conhecimento_criterios_de_qualidade"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CHANGELOG.md",
+      "source": "changelog",
+      "target": "conhecimento_imunobiologicos_vacinas_modelo_vacina"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CHANGELOG.md",
+      "source": "changelog",
+      "target": "conhecimento_modelo_objeto_de_conhecimento"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CHANGELOG.md",
+      "source": "changelog",
+      "target": "conhecimento_taxonomia_dos_objetos"
+    },
+    {
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "index.html",
+      "source": "index_html",
+      "target": "docs_guia_identidade_visual"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "conhecimento/ARQUITETURA_DA_BASE.md",
+      "source": "conhecimento_arquitetura_da_base",
+      "target": "conhecimento_modelo_objeto_de_conhecimento"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "conhecimento/imunobiologicos/vacinas/bcg/BCG.md",
+      "source": "conhecimento_imunobiologicos_vacinas_bcg_bcg",
+      "target": "conhecimento_criterios_de_qualidade"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "conhecimento/imunobiologicos/vacinas/bcg/BCG.md",
+      "source": "conhecimento_imunobiologicos_vacinas_bcg_bcg",
+      "target": "conhecimento_modelo_objeto_de_conhecimento"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "conhecimento/MODELO_OBJETO_DE_CONHECIMENTO.md",
+      "source": "conhecimento_modelo_objeto_de_conhecimento",
+      "target": "conhecimento_padrao_de_metadados"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "docs/NUCLEO_DO_CONHECIMENTO.md",
+      "source": "docs_nucleo_do_conhecimento",
+      "target": "conhecimento_modelo_objeto_de_conhecimento"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "conhecimento/imunobiologicos/vacinas/bcg/BCG.md",
+      "source": "conhecimento_imunobiologicos_vacinas_bcg_bcg",
+      "target": "conhecimento_padrao_de_metadados"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "conhecimento/imunobiologicos/vacinas/bcg/BCG.md",
+      "source": "conhecimento_imunobiologicos_vacinas_bcg_bcg",
+      "target": "conhecimento_imunobiologicos_vacinas_modelo_vacina"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "conhecimento/imunobiologicos/vacinas/bcg/BCG.md",
+      "source": "conhecimento_imunobiologicos_vacinas_bcg_bcg",
+      "target": "conhecimento_programa_nacional_imunizacoes_pni"
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "knowledge_base_structure",
+      "label": "Knowledge Base Structural Framework",
+      "nodes": [
+        "conhecimento_arquitetura_da_base",
+        "conhecimento_modelo_objeto_de_conhecimento",
+        "conhecimento_padrao_de_metadados",
+        "conhecimento_taxonomia_dos_objetos",
+        "conhecimento_criterios_de_qualidade"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "id": "immunization_domain_entities",
+      "label": "Immunization Domain Entities",
+      "nodes": [
+        "conhecimento_programa_nacional_imunizacoes_pni",
+        "conhecimento_imunobiologicos_vacinas_bcg_bcg"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    }
+  ]
+}

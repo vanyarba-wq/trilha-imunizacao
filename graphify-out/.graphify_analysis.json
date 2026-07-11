@@ -1,0 +1,186 @@
+{
+  "communities": {
+    "0": [
+      "changelog",
+      "conhecimento_criterios_de_qualidade",
+      "conhecimento_imunobiologicos_vacinas_modelo_vacina",
+      "conhecimento_taxonomia_dos_objetos"
+    ],
+    "1": [
+      "conhecimento_arquitetura_da_base",
+      "conhecimento_modelo_objeto_de_conhecimento",
+      "docs_nucleo_do_conhecimento"
+    ],
+    "2": [
+      "conhecimento_imunobiologicos_vacinas_bcg_bcg",
+      "conhecimento_padrao_de_metadados",
+      "conhecimento_programa_nacional_imunizacoes_pni"
+    ],
+    "3": [
+      "docs_guia_identidade_visual",
+      "index_html"
+    ],
+    "4": [
+      "conhecimento_guia_editorial"
+    ],
+    "5": [
+      "conhecimento_imunobiologicos_modelo"
+    ],
+    "6": [
+      "docs_arquitetura_da_trilha"
+    ],
+    "7": [
+      "docs_principios_da_plataforma"
+    ],
+    "8": [
+      "readme"
+    ]
+  },
+  "cohesion": {
+    "0": 0.5,
+    "1": 0.6666666666666666,
+    "2": 0.6666666666666666,
+    "3": 1.0,
+    "4": 1.0,
+    "5": 1.0,
+    "6": 1.0,
+    "7": 1.0,
+    "8": 1.0
+  },
+  "gods": [
+    {
+      "id": "conhecimento_modelo_objeto_de_conhecimento",
+      "label": "Modelo de Objeto de Conhecimento",
+      "degree": 5
+    },
+    {
+      "id": "conhecimento_imunobiologicos_vacinas_bcg_bcg",
+      "label": "Objeto de Conhecimento: BCG",
+      "degree": 5
+    },
+    {
+      "id": "changelog",
+      "label": "Changelog",
+      "degree": 4
+    },
+    {
+      "id": "conhecimento_criterios_de_qualidade",
+      "label": "Critérios de Qualidade",
+      "degree": 2
+    },
+    {
+      "id": "conhecimento_padrao_de_metadados",
+      "label": "Padrão de Metadados",
+      "degree": 2
+    },
+    {
+      "id": "conhecimento_imunobiologicos_vacinas_modelo_vacina",
+      "label": "Modelo de Vacina",
+      "degree": 2
+    },
+    {
+      "id": "index_html",
+      "label": "Trilha de Imunização Home",
+      "degree": 1
+    },
+    {
+      "id": "conhecimento_arquitetura_da_base",
+      "label": "Arquitetura da Base de Conhecimento",
+      "degree": 1
+    },
+    {
+      "id": "conhecimento_taxonomia_dos_objetos",
+      "label": "Taxonomia dos Objetos",
+      "degree": 1
+    },
+    {
+      "id": "conhecimento_programa_nacional_imunizacoes_pni",
+      "label": "Programa Nacional de Imunizações (PNI)",
+      "degree": 1
+    }
+  ],
+  "surprises": [
+    {
+      "source": "Núcleo do Conhecimento",
+      "target": "Modelo de Objeto de Conhecimento",
+      "source_files": [
+        "docs/NUCLEO_DO_CONHECIMENTO.md",
+        "conhecimento/MODELO_OBJETO_DE_CONHECIMENTO.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; peripheral node `Núcleo do Conhecimento` unexpectedly reaches hub `Modelo de Objeto de Conhecimento`"
+    },
+    {
+      "source": "Changelog",
+      "target": "Modelo de Objeto de Conhecimento",
+      "source_files": [
+        "CHANGELOG.md",
+        "conhecimento/MODELO_OBJETO_DE_CONHECIMENTO.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories; bridges separate communities"
+    },
+    {
+      "source": "Trilha de Imunização Home",
+      "target": "Guia de Identidade Visual",
+      "source_files": [
+        "index.html",
+        "docs/GUIA_IDENTIDADE_VISUAL.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "implements",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
+    },
+    {
+      "source": "Changelog",
+      "target": "Critérios de Qualidade",
+      "source_files": [
+        "CHANGELOG.md",
+        "conhecimento/CRITERIOS_DE_QUALIDADE.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories"
+    },
+    {
+      "source": "Changelog",
+      "target": "Modelo de Vacina",
+      "source_files": [
+        "CHANGELOG.md",
+        "conhecimento/imunobiologicos/vacinas/MODELO_VACINA.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `Modelo de Objeto de Conhecimento` connect `Knowledge Base Architecture` to `Quality and Taxonomy Standards`, `Immunization Metadata Standards`?",
+      "why": "High betweenness centrality (0.153) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `Objeto de Conhecimento: BCG` connect `Immunization Metadata Standards` to `Quality and Taxonomy Standards`, `Knowledge Base Architecture`?",
+      "why": "High betweenness centrality (0.113) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `Changelog` connect `Quality and Taxonomy Standards` to `Knowledge Base Architecture`?",
+      "why": "High betweenness centrality (0.096) - this node is a cross-community bridge."
+    },
+    {
+      "type": "verify_inferred",
+      "question": "Are the 2 inferred relationships involving `Modelo de Objeto de Conhecimento` (e.g. with `Arquitetura da Base de Conhecimento` and `Núcleo do Conhecimento`) actually correct?",
+      "why": "`Modelo de Objeto de Conhecimento` has 2 INFERRED edges - model-reasoned connections that need verification."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `Trilha de Imunização README`, `Trilha de Imunização Home`, `Arquitetura da Base de Conhecimento` to the rest of the system?",
+      "why": "11 weakly-connected nodes found - possible documentation gaps or missing edges."
+    }
+  ]
+}
