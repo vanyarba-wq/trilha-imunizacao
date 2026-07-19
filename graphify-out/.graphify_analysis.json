@@ -1,0 +1,260 @@
+{
+  "communities": {
+    "0": [
+      "docs_ai_context",
+      "docs_arquitetura_arquitetura_da_base_de_conhecimento",
+      "docs_arquitetura_arquitetura_da_trilha",
+      "docs_arquitetura_arquitetura_do_grafo_semantico",
+      "docs_arquitetura_arquitetura_dos_agentes_ia",
+      "docs_arquitetura_fluxo_de_atualizacao_da_base",
+      "docs_arquitetura_roadmap_da_arquitetura",
+      "docs_home_versao_1",
+      "docs_jornada_do_usuario",
+      "docs_principios_da_plataforma",
+      "docs_publico_e_cenarios_de_uso",
+      "docs_roadmap",
+      "docs_visao_do_projeto"
+    ],
+    "1": [
+      "clinico_calendario_nacional_de_vacinacao",
+      "conhecimento_imunobiologicos_readme",
+      "conhecimento_manifesto_da_base",
+      "conhecimento_programa_nacional_imunizacoes_readme",
+      "conhecimento_sistemas_readme",
+      "e_sus_pec",
+      "pni",
+      "rede_de_frio",
+      "rnds",
+      "si_pni"
+    ],
+    "2": [
+      "conhecimento_sipni_calendario_nacional",
+      "conhecimento_sipni_esus_pec",
+      "conhecimento_sipni_imunobiologicos",
+      "conhecimento_sipni_pni",
+      "conhecimento_sipni_rede_de_frio",
+      "conhecimento_sipni_rnds",
+      "conhecimento_sipni_rqdv",
+      "conhecimento_sipni_sipni"
+    ],
+    "3": [
+      "conhecimento_rede_de_frio",
+      "sistema_esus_pec",
+      "sistema_rnds",
+      "sistema_si_pni"
+    ],
+    "4": [
+      "conhecimento_modelo_objeto_conhecimento",
+      "conhecimento_readme"
+    ],
+    "5": [
+      "conhecimento_padrao_da_base_de_conhecimento",
+      "conhecimento_template_objeto_conhecimento"
+    ],
+    "6": [
+      "docs_diario_de_bordo",
+      "docs_memorias_da_trilha"
+    ],
+    "7": [
+      "changelog"
+    ],
+    "8": [
+      "conhecimento_arquitetura_da_base"
+    ],
+    "9": [
+      "conhecimento_criterios_de_qualidade"
+    ],
+    "10": [
+      "conhecimento_glossario_glossario"
+    ],
+    "11": [
+      "conhecimento_guia_editorial"
+    ],
+    "12": [
+      "conhecimento_imunobiologicos_modelo"
+    ],
+    "13": [
+      "conhecimento_imunobiologicos_vacinas_bcg_bcg"
+    ],
+    "14": [
+      "conhecimento_imunobiologicos_vacinas_modelo_vacina"
+    ],
+    "15": [
+      "conhecimento_mapa_da_base"
+    ],
+    "16": [
+      "conhecimento_modelo_objeto_de_conhecimento"
+    ],
+    "17": [
+      "conhecimento_padrao_de_metadados"
+    ],
+    "18": [
+      "conhecimento_programa_nacional_imunizacoes_modelo"
+    ],
+    "19": [
+      "conhecimento_programa_nacional_imunizacoes_pni"
+    ],
+    "20": [
+      "conhecimento_taxonomia_dos_objetos"
+    ],
+    "21": [
+      "docs_backlog"
+    ],
+    "22": [
+      "docs_guia_identidade_visual"
+    ],
+    "23": [
+      "docs_nucleo_do_conhecimento"
+    ],
+    "24": [
+      "index_html"
+    ],
+    "25": [
+      "readme"
+    ]
+  },
+  "cohesion": {
+    "0": 0.2692307692307692,
+    "1": 0.26666666666666666,
+    "2": 0.25,
+    "3": 0.5,
+    "4": 1.0,
+    "5": 1.0,
+    "6": 1.0,
+    "7": 1.0,
+    "8": 1.0,
+    "9": 1.0,
+    "10": 1.0,
+    "11": 1.0,
+    "12": 1.0,
+    "13": 1.0,
+    "14": 1.0,
+    "15": 1.0,
+    "16": 1.0,
+    "17": 1.0,
+    "18": 1.0,
+    "19": 1.0,
+    "20": 1.0,
+    "21": 1.0,
+    "22": 1.0,
+    "23": 1.0,
+    "24": 1.0,
+    "25": 1.0
+  },
+  "gods": [
+    {
+      "id": "docs_arquitetura_arquitetura_da_trilha",
+      "label": "Arquitetura da Trilha",
+      "degree": 11
+    },
+    {
+      "id": "clinico_calendario_nacional_de_vacinacao",
+      "label": "Calendário Nacional de Vacinação",
+      "degree": 7
+    },
+    {
+      "id": "docs_visao_do_projeto",
+      "label": "Visão do Projeto",
+      "degree": 7
+    },
+    {
+      "id": "conhecimento_sipni_sipni",
+      "label": "Sistema de Informação do Programa Nacional de Imunizações (SI-PNI)",
+      "degree": 7
+    },
+    {
+      "id": "docs_home_versao_1",
+      "label": "Home Versão 1",
+      "degree": 4
+    },
+    {
+      "id": "docs_jornada_do_usuario",
+      "label": "Jornada do Usuário",
+      "degree": 4
+    },
+    {
+      "id": "conhecimento_sistemas_readme",
+      "label": "Sistemas de Informação",
+      "degree": 3
+    },
+    {
+      "id": "conhecimento_rede_de_frio",
+      "label": "Rede de Frio",
+      "degree": 3
+    },
+    {
+      "id": "docs_ai_context",
+      "label": "AI Context",
+      "degree": 3
+    },
+    {
+      "id": "docs_principios_da_plataforma",
+      "label": "Princípios da Plataforma",
+      "degree": 3
+    }
+  ],
+  "surprises": [
+    {
+      "source": "Imunobiológicos",
+      "target": "Calendário Nacional de Vacinação",
+      "source_files": [
+        "conhecimento/imunobiologicos/README.md",
+        "clinico/CALENDARIO_NACIONAL_DE_VACINACAO.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; peripheral node `Imunobiológicos` unexpectedly reaches hub `Calendário Nacional de Vacinação`"
+    },
+    {
+      "source": "Manifesto da Base de Conhecimento",
+      "target": "Calendário Nacional de Vacinação",
+      "source_files": [
+        "conhecimento/MANIFESTO_DA_BASE.md",
+        "clinico/CALENDARIO_NACIONAL_DE_VACINACAO.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories; peripheral node `Manifesto da Base de Conhecimento` unexpectedly reaches hub `Calendário Nacional de Vacinação`"
+    },
+    {
+      "source": "Diário de Bordo",
+      "target": "Memórias da Trilha",
+      "source_files": [
+        "docs/DIARIO_DE_BORDO.md",
+        "docs/MEMORIAS_DA_TRILHA.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source"
+    },
+    {
+      "source": "Roadmap",
+      "target": "Arquitetura da Trilha",
+      "source_files": [
+        "docs/ROADMAP.md",
+        "docs/arquitetura/ARQUITETURA_DA_TRILHA.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "peripheral node `Roadmap` unexpectedly reaches hub `Arquitetura da Trilha`"
+    },
+    {
+      "source": "Roadmap",
+      "target": "Visão do Projeto",
+      "source_files": [
+        "docs/ROADMAP.md",
+        "docs/VISAO_DO_PROJETO.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "peripheral node `Roadmap` unexpectedly reaches hub `Visão do Projeto`"
+    }
+  ],
+  "questions": [
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `Changelog`, `Trilha de Imunização README`, `Arquitetura da Base de Conhecimento` to the rest of the system?",
+      "why": "42 weakly-connected nodes found - possible documentation gaps or missing edges."
+    }
+  ]
+}

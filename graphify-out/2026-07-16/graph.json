@@ -1,0 +1,1260 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "hyperedges": [
+      {
+        "id": "experiencia_do_usuario",
+        "label": "Defini\u00e7\u00e3o da Experi\u00eancia do Usu\u00e1rio",
+        "nodes": [
+          "docs_home_versao_1",
+          "docs_jornada_do_usuario",
+          "docs_publico_e_cenarios_de_uso"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.9,
+        "source_file": "docs/HOME_VERSAO_1.md"
+      },
+      {
+        "id": "projeto_visao_estrategica",
+        "label": "Vis\u00e3o Estrat\u00e9gica do Projeto",
+        "nodes": [
+          "docs_visao_do_projeto",
+          "docs_principios_da_plataforma",
+          "docs_roadmap",
+          "docs_ai_context"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.9,
+        "source_file": "docs/VISAO_DO_PROJETO.md"
+      },
+      {
+        "id": "arquitetura_core_docs",
+        "label": "Documenta\u00e7\u00e3o de Arquitetura",
+        "nodes": [
+          "docs_arquitetura_arquitetura_da_trilha",
+          "docs_arquitetura_arquitetura_da_base_de_conhecimento",
+          "docs_arquitetura_arquitetura_do_grafo_semantico",
+          "docs_arquitetura_arquitetura_dos_agentes_ia",
+          "docs_arquitetura_fluxo_de_atualizacao_da_base",
+          "docs_arquitetura_roadmap_da_arquitetura"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "docs/arquitetura/ARQUITETURA_DA_TRILHA.md"
+      },
+      {
+        "id": "vacinacao_data_flow",
+        "label": "Fluxo de Dados de Vacina\u00e7\u00e3o",
+        "nodes": [
+          "conhecimento_sipni_sipni",
+          "conhecimento_sipni_rnds",
+          "conhecimento_sipni_rqdv"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.85,
+        "source_file": "conhecimento/SIPNI.md"
+      },
+      {
+        "id": "base_conhecimento_structure",
+        "label": "Estrutura da Base de Conhecimento",
+        "nodes": [
+          "conhecimento_readme",
+          "conhecimento_manifesto_da_base",
+          "conhecimento_mapa_da_base"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.9,
+        "source_file": "conhecimento/README.md"
+      },
+      {
+        "id": "trilha_imunizacao_core_systems",
+        "label": "Sistemas Centrais da Trilha de Imuniza\u00e7\u00e3o",
+        "nodes": [
+          "si_pni",
+          "e_sus_pec",
+          "rnds"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.95,
+        "source_file": "conhecimento/sistemas/README.md"
+      },
+      {
+        "id": "knowledge_base_structure",
+        "label": "Knowledge Base Structural Framework",
+        "nodes": [
+          "conhecimento_arquitetura_da_base",
+          "conhecimento_modelo_objeto_de_conhecimento",
+          "conhecimento_padrao_de_metadados",
+          "conhecimento_taxonomia_dos_objetos",
+          "conhecimento_criterios_de_qualidade"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0
+      },
+      {
+        "id": "immunization_domain_entities",
+        "label": "Immunization Domain Entities",
+        "nodes": [
+          "conhecimento_programa_nacional_imunizacoes_pni",
+          "conhecimento_imunobiologicos_vacinas_bcg_bcg"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "label": "Changelog",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "community": 7,
+      "norm_label": "changelog",
+      "community_name": "Change History",
+      "id": "changelog"
+    },
+    {
+      "label": "Trilha de Imuniza\u00e7\u00e3o README",
+      "file_type": "document",
+      "source_file": "README.md",
+      "community": 25,
+      "norm_label": "trilha de imunizacao readme",
+      "community_name": "Immunization Trail Documentation",
+      "id": "readme"
+    },
+    {
+      "label": "Arquitetura da Base de Conhecimento",
+      "file_type": "document",
+      "source_file": "conhecimento/ARQUITETURA_DA_BASE.md",
+      "community": 8,
+      "norm_label": "arquitetura da base de conhecimento",
+      "community_name": "Knowledge Base Architecture",
+      "id": "conhecimento_arquitetura_da_base"
+    },
+    {
+      "label": "Crit\u00e9rios de Qualidade",
+      "file_type": "document",
+      "source_file": "conhecimento/CRITERIOS_DE_QUALIDADE.md",
+      "community": 9,
+      "norm_label": "criterios de qualidade",
+      "community_name": "Quality Standards",
+      "id": "conhecimento_criterios_de_qualidade"
+    },
+    {
+      "label": "Guia Editorial",
+      "file_type": "document",
+      "source_file": "conhecimento/GUIA_EDITORIAL.md",
+      "community": 11,
+      "norm_label": "guia editorial",
+      "community_name": "Editorial Guidelines",
+      "id": "conhecimento_guia_editorial"
+    },
+    {
+      "label": "Modelo de Objeto de Conhecimento",
+      "file_type": "document",
+      "source_file": "conhecimento/MODELO_OBJETO_DE_CONHECIMENTO.md",
+      "community": 16,
+      "norm_label": "modelo de objeto de conhecimento",
+      "community_name": "Knowledge Object Structure",
+      "id": "conhecimento_modelo_objeto_de_conhecimento"
+    },
+    {
+      "label": "Padr\u00e3o de Metadados",
+      "file_type": "document",
+      "source_file": "conhecimento/PADRAO_DE_METADADOS.md",
+      "community": 17,
+      "norm_label": "padrao de metadados",
+      "community_name": "Metadata Standards",
+      "id": "conhecimento_padrao_de_metadados"
+    },
+    {
+      "label": "Taxonomia dos Objetos",
+      "file_type": "document",
+      "source_file": "conhecimento/TAXONOMIA_DOS_OBJETOS.md",
+      "community": 20,
+      "norm_label": "taxonomia dos objetos",
+      "community_name": "Object Taxonomy",
+      "id": "conhecimento_taxonomia_dos_objetos"
+    },
+    {
+      "label": "Modelo de Imunobiol\u00f3gico",
+      "file_type": "document",
+      "source_file": "conhecimento/imunobiologicos/MODELO.md",
+      "community": 12,
+      "norm_label": "modelo de imunobiologico",
+      "community_name": "Immunobiological Data Model",
+      "id": "conhecimento_imunobiologicos_modelo"
+    },
+    {
+      "label": "Modelo de Vacina",
+      "file_type": "document",
+      "source_file": "conhecimento/imunobiologicos/vacinas/MODELO_VACINA.md",
+      "community": 14,
+      "norm_label": "modelo de vacina",
+      "community_name": "Vaccine Data Model",
+      "id": "conhecimento_imunobiologicos_vacinas_modelo_vacina"
+    },
+    {
+      "label": "Objeto de Conhecimento: BCG",
+      "file_type": "document",
+      "source_file": "conhecimento/imunobiologicos/vacinas/bcg/BCG.md",
+      "community": 13,
+      "norm_label": "objeto de conhecimento: bcg",
+      "community_name": "BCG Vaccine Documentation",
+      "id": "conhecimento_imunobiologicos_vacinas_bcg_bcg"
+    },
+    {
+      "label": "Programa Nacional de Imuniza\u00e7\u00f5es (PNI)",
+      "file_type": "document",
+      "source_file": "conhecimento/programa_nacional_imunizacoes/PNI.md",
+      "community": 19,
+      "norm_label": "programa nacional de imunizacoes (pni)",
+      "community_name": "National Immunization Program",
+      "id": "conhecimento_programa_nacional_imunizacoes_pni"
+    },
+    {
+      "label": "Guia de Identidade Visual",
+      "file_type": "document",
+      "source_file": "docs/GUIA_IDENTIDADE_VISUAL.md",
+      "community": 22,
+      "norm_label": "guia de identidade visual",
+      "community_name": "Visual Identity Guidelines",
+      "id": "docs_guia_identidade_visual"
+    },
+    {
+      "label": "N\u00facleo do Conhecimento",
+      "file_type": "document",
+      "source_file": "docs/NUCLEO_DO_CONHECIMENTO.md",
+      "community": 23,
+      "norm_label": "nucleo do conhecimento",
+      "community_name": "Core Knowledge Base",
+      "id": "docs_nucleo_do_conhecimento"
+    },
+    {
+      "label": "Trilha de Imuniza\u00e7\u00e3o Home",
+      "file_type": "code",
+      "source_file": "index.html",
+      "community": 24,
+      "norm_label": "trilha de imunizacao home",
+      "community_name": "Immunization Trail Homepage",
+      "id": "index_html"
+    },
+    {
+      "label": "Programa Nacional de Imuniza\u00e7\u00f5es",
+      "file_type": "concept",
+      "source_file": null,
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 1,
+      "norm_label": "programa nacional de imunizacoes",
+      "community_name": "National Immunization Systems",
+      "id": "pni"
+    },
+    {
+      "label": "SI-PNI",
+      "file_type": "concept",
+      "source_file": null,
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 1,
+      "norm_label": "si-pni",
+      "community_name": "National Immunization Systems",
+      "id": "si_pni"
+    },
+    {
+      "label": "e-SUS PEC",
+      "file_type": "concept",
+      "source_file": null,
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 1,
+      "norm_label": "e-sus pec",
+      "community_name": "National Immunization Systems",
+      "id": "e_sus_pec"
+    },
+    {
+      "label": "RNDS",
+      "file_type": "concept",
+      "source_file": null,
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 1,
+      "norm_label": "rnds",
+      "community_name": "National Immunization Systems",
+      "id": "rnds"
+    },
+    {
+      "label": "Rede de Frio",
+      "file_type": "concept",
+      "source_file": null,
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 1,
+      "norm_label": "rede de frio",
+      "community_name": "National Immunization Systems",
+      "id": "rede_de_frio"
+    },
+    {
+      "label": "Calend\u00e1rio Nacional de Vacina\u00e7\u00e3o",
+      "file_type": "document",
+      "source_file": "clinico/CALENDARIO_NACIONAL_DE_VACINACAO.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 1,
+      "norm_label": "calendario nacional de vacinacao",
+      "community_name": "National Immunization Systems",
+      "id": "clinico_calendario_nacional_de_vacinacao"
+    },
+    {
+      "label": "Manifesto da Base de Conhecimento",
+      "file_type": "document",
+      "source_file": "conhecimento/MANIFESTO_DA_BASE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 1,
+      "norm_label": "manifesto da base de conhecimento",
+      "community_name": "National Immunization Systems",
+      "id": "conhecimento_manifesto_da_base"
+    },
+    {
+      "label": "Mapa da Base de Conhecimento",
+      "file_type": "document",
+      "source_file": "conhecimento/MAPA_DA_BASE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 15,
+      "norm_label": "mapa da base de conhecimento",
+      "community_name": "Knowledge Base Map",
+      "id": "conhecimento_mapa_da_base"
+    },
+    {
+      "label": "Modelo de Objeto de Conhecimento",
+      "file_type": "document",
+      "source_file": "conhecimento/MODELO_OBJETO_CONHECIMENTO.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 4,
+      "norm_label": "modelo de objeto de conhecimento",
+      "community_name": "Knowledge Object Documentation",
+      "id": "conhecimento_modelo_objeto_conhecimento"
+    },
+    {
+      "label": "Base de Conhecimento README",
+      "file_type": "document",
+      "source_file": "conhecimento/README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 4,
+      "norm_label": "base de conhecimento readme",
+      "community_name": "Knowledge Object Documentation",
+      "id": "conhecimento_readme"
+    },
+    {
+      "label": "Imunobiol\u00f3gicos",
+      "file_type": "document",
+      "source_file": "conhecimento/imunobiologicos/README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 1,
+      "norm_label": "imunobiologicos",
+      "community_name": "National Immunization Systems",
+      "id": "conhecimento_imunobiologicos_readme"
+    },
+    {
+      "label": "Programa Nacional de Imuniza\u00e7\u00f5es (PNI)",
+      "file_type": "document",
+      "source_file": "conhecimento/programa_nacional_imunizacoes/README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 1,
+      "norm_label": "programa nacional de imunizacoes (pni)",
+      "community_name": "National Immunization Systems",
+      "id": "conhecimento_programa_nacional_imunizacoes_readme"
+    },
+    {
+      "label": "Sistemas de Informa\u00e7\u00e3o",
+      "file_type": "document",
+      "source_file": "conhecimento/sistemas/README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 1,
+      "norm_label": "sistemas de informacao",
+      "community_name": "National Immunization Systems",
+      "id": "conhecimento_sistemas_readme"
+    },
+    {
+      "label": "Rede de Frio",
+      "file_type": "document",
+      "source_file": "conhecimento/REDE_DE_FRIO.md",
+      "community": 3,
+      "norm_label": "rede de frio",
+      "community_name": "Health Information Networks",
+      "id": "conhecimento_rede_de_frio"
+    },
+    {
+      "label": "SI-PNI",
+      "file_type": "concept",
+      "source_file": "conhecimento/REDE_DE_FRIO.md",
+      "community": 3,
+      "norm_label": "si-pni",
+      "community_name": "Health Information Networks",
+      "id": "sistema_si_pni"
+    },
+    {
+      "label": "e-SUS PEC",
+      "file_type": "concept",
+      "source_file": "conhecimento/REDE_DE_FRIO.md",
+      "community": 3,
+      "norm_label": "e-sus pec",
+      "community_name": "Health Information Networks",
+      "id": "sistema_esus_pec"
+    },
+    {
+      "label": "RNDS",
+      "file_type": "concept",
+      "source_file": "conhecimento/REDE_DE_FRIO.md",
+      "community": 3,
+      "norm_label": "rnds",
+      "community_name": "Health Information Networks",
+      "id": "sistema_rnds"
+    },
+    {
+      "label": "Modelo de Objeto de Conhecimento",
+      "file_type": "document",
+      "source_file": "conhecimento/programa_nacional_imunizacoes/MODELO.md",
+      "community": 18,
+      "norm_label": "modelo de objeto de conhecimento",
+      "community_name": "Knowledge Object Framework",
+      "id": "conhecimento_programa_nacional_imunizacoes_modelo"
+    },
+    {
+      "label": "Backlog",
+      "file_type": "document",
+      "source_file": "docs/BACKLOG.md",
+      "community": 21,
+      "norm_label": "backlog",
+      "community_name": "Project Backlog",
+      "id": "docs_backlog"
+    },
+    {
+      "label": "Di\u00e1rio de Bordo",
+      "file_type": "document",
+      "source_file": "docs/DIARIO_DE_BORDO.md",
+      "community": 6,
+      "norm_label": "diario de bordo",
+      "community_name": "Project Logs and Memories",
+      "id": "docs_diario_de_bordo"
+    },
+    {
+      "label": "Mem\u00f3rias da Trilha",
+      "file_type": "document",
+      "source_file": "docs/MEMORIAS_DA_TRILHA.md",
+      "community": 6,
+      "norm_label": "memorias da trilha",
+      "community_name": "Project Logs and Memories",
+      "id": "docs_memorias_da_trilha"
+    },
+    {
+      "label": "Gloss\u00e1rio",
+      "file_type": "document",
+      "source_file": "conhecimento/GLOSSARIO.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 10,
+      "norm_label": "glossario",
+      "community_name": "Glossary of Terms",
+      "id": "conhecimento_glossario_glossario"
+    },
+    {
+      "label": "Padr\u00e3o da Base de Conhecimento",
+      "file_type": "document",
+      "source_file": "conhecimento/PADRAO_DA_BASE_DE_CONHECIMENTO.md",
+      "community": 5,
+      "norm_label": "padrao da base de conhecimento",
+      "id": "conhecimento_padrao_da_base_de_conhecimento",
+      "community_name": "Knowledge Base Standards"
+    },
+    {
+      "label": "Template Objeto de Conhecimento",
+      "file_type": "document",
+      "source_file": "conhecimento/TEMPLATE_OBJETO_CONHECIMENTO.md",
+      "community": 5,
+      "norm_label": "template objeto de conhecimento",
+      "id": "conhecimento_template_objeto_conhecimento",
+      "community_name": "Knowledge Base Standards"
+    },
+    {
+      "label": "AI Context",
+      "file_type": "document",
+      "source_file": "docs/AI_CONTEXT.md",
+      "community": 0,
+      "norm_label": "ai context",
+      "id": "docs_ai_context",
+      "community_name": "AI and Platform Architecture"
+    },
+    {
+      "label": "Home Vers\u00e3o 1",
+      "file_type": "document",
+      "source_file": "docs/HOME_VERSAO_1.md",
+      "community": 0,
+      "norm_label": "home versao 1",
+      "id": "docs_home_versao_1",
+      "community_name": "AI and Platform Architecture"
+    },
+    {
+      "label": "Jornada do Usu\u00e1rio",
+      "file_type": "document",
+      "source_file": "docs/JORNADA_DO_USUARIO.md",
+      "community": 0,
+      "norm_label": "jornada do usuario",
+      "id": "docs_jornada_do_usuario",
+      "community_name": "AI and Platform Architecture"
+    },
+    {
+      "label": "Princ\u00edpios da Plataforma",
+      "file_type": "document",
+      "source_file": "docs/PRINCIPIOS_DA_PLATAFORMA.md",
+      "community": 0,
+      "norm_label": "principios da plataforma",
+      "id": "docs_principios_da_plataforma",
+      "community_name": "AI and Platform Architecture"
+    },
+    {
+      "label": "P\u00fablico e Cen\u00e1rios de Uso",
+      "file_type": "document",
+      "source_file": "docs/PUBLICO_E_CENARIOS_DE_USO.md",
+      "community": 0,
+      "norm_label": "publico e cenarios de uso",
+      "id": "docs_publico_e_cenarios_de_uso",
+      "community_name": "AI and Platform Architecture"
+    },
+    {
+      "label": "Roadmap",
+      "file_type": "document",
+      "source_file": "docs/ROADMAP.md",
+      "community": 0,
+      "norm_label": "roadmap",
+      "id": "docs_roadmap",
+      "community_name": "AI and Platform Architecture"
+    },
+    {
+      "label": "Vis\u00e3o do Projeto",
+      "file_type": "document",
+      "source_file": "docs/VISAO_DO_PROJETO.md",
+      "community": 0,
+      "norm_label": "visao do projeto",
+      "id": "docs_visao_do_projeto",
+      "community_name": "AI and Platform Architecture"
+    },
+    {
+      "label": "Arquitetura da Base de Conhecimento",
+      "file_type": "document",
+      "source_file": "docs/arquitetura/ARQUITETURA_DA_BASE_DE_CONHECIMENTO.md",
+      "community": 0,
+      "norm_label": "arquitetura da base de conhecimento",
+      "id": "docs_arquitetura_arquitetura_da_base_de_conhecimento",
+      "community_name": "AI and Platform Architecture"
+    },
+    {
+      "label": "Arquitetura da Trilha",
+      "file_type": "document",
+      "source_file": "docs/arquitetura/ARQUITETURA_DA_TRILHA.md",
+      "community": 0,
+      "norm_label": "arquitetura da trilha",
+      "id": "docs_arquitetura_arquitetura_da_trilha",
+      "community_name": "AI and Platform Architecture"
+    },
+    {
+      "label": "Arquitetura dos Agentes de IA",
+      "file_type": "document",
+      "source_file": "docs/arquitetura/ARQUITETURA_DOS_AGENTES_IA.md",
+      "community": 0,
+      "norm_label": "arquitetura dos agentes de ia",
+      "id": "docs_arquitetura_arquitetura_dos_agentes_ia",
+      "community_name": "AI and Platform Architecture"
+    },
+    {
+      "label": "Arquitetura do Grafo Sem\u00e2ntico",
+      "file_type": "document",
+      "source_file": "docs/arquitetura/ARQUITETURA_DO_GRAFO_SEMANTICO.md",
+      "community": 0,
+      "norm_label": "arquitetura do grafo semantico",
+      "id": "docs_arquitetura_arquitetura_do_grafo_semantico",
+      "community_name": "AI and Platform Architecture"
+    },
+    {
+      "label": "Fluxo de Atualiza\u00e7\u00e3o da Base",
+      "file_type": "document",
+      "source_file": "docs/arquitetura/FLUXO_DE_ATUALIZACAO_DA_BASE.md",
+      "community": 0,
+      "norm_label": "fluxo de atualizacao da base",
+      "id": "docs_arquitetura_fluxo_de_atualizacao_da_base",
+      "community_name": "AI and Platform Architecture"
+    },
+    {
+      "label": "Roadmap da Arquitetura",
+      "file_type": "document",
+      "source_file": "docs/arquitetura/ROADMAP_DA_ARQUITETURA.md",
+      "community": 0,
+      "norm_label": "roadmap da arquitetura",
+      "id": "docs_arquitetura_roadmap_da_arquitetura",
+      "community_name": "AI and Platform Architecture"
+    },
+    {
+      "label": "Sistema de Informa\u00e7\u00e3o do Programa Nacional de Imuniza\u00e7\u00f5es (SI-PNI)",
+      "file_type": "document",
+      "source_file": "conhecimento/SIPNI.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "sistema de informacao do programa nacional de imunizacoes (si-pni)",
+      "id": "conhecimento_sipni_sipni",
+      "community_name": "Immunization Data Management"
+    },
+    {
+      "label": "Programa Nacional de Imuniza\u00e7\u00f5es (PNI)",
+      "file_type": "concept",
+      "source_file": "conhecimento/SIPNI.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "programa nacional de imunizacoes (pni)",
+      "id": "conhecimento_sipni_pni",
+      "community_name": "Immunization Data Management"
+    },
+    {
+      "label": "Rede Nacional de Dados em Sa\u00fade (RNDS)",
+      "file_type": "document",
+      "source_file": "conhecimento/SIPNI.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "rede nacional de dados em saude (rnds)",
+      "id": "conhecimento_sipni_rnds",
+      "community_name": "Immunization Data Management"
+    },
+    {
+      "label": "e-SUS PEC",
+      "file_type": "document",
+      "source_file": "conhecimento/SIPNI.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "e-sus pec",
+      "id": "conhecimento_sipni_esus_pec",
+      "community_name": "Immunization Data Management"
+    },
+    {
+      "label": "Rede de Frio",
+      "file_type": "document",
+      "source_file": "conhecimento/SIPNI.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "rede de frio",
+      "id": "conhecimento_sipni_rede_de_frio",
+      "community_name": "Immunization Data Management"
+    },
+    {
+      "label": "Calend\u00e1rio Nacional de Vacina\u00e7\u00e3o",
+      "file_type": "document",
+      "source_file": "conhecimento/SIPNI.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "calendario nacional de vacinacao",
+      "id": "conhecimento_sipni_calendario_nacional",
+      "community_name": "Immunization Data Management"
+    },
+    {
+      "label": "Imunobiol\u00f3gicos",
+      "file_type": "document",
+      "source_file": "conhecimento/SIPNI.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "imunobiologicos",
+      "id": "conhecimento_sipni_imunobiologicos",
+      "community_name": "Immunization Data Management"
+    },
+    {
+      "label": "Rastreador de Qualidade dos Dados Vacinais (RQDV)",
+      "file_type": "document",
+      "source_file": "conhecimento/SIPNI.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "rastreador de qualidade dos dados vacinais (rqdv)",
+      "id": "conhecimento_sipni_rqdv",
+      "community_name": "Immunization Data Management"
+    }
+  ],
+  "links": [
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "clinico/CALENDARIO_NACIONAL_DE_VACINACAO.md",
+      "source": "clinico_calendario_nacional_de_vacinacao",
+      "target": "pni"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "conhecimento/imunobiologicos/README.md",
+      "source": "conhecimento_imunobiologicos_readme",
+      "target": "pni"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "conhecimento/programa_nacional_imunizacoes/README.md",
+      "source": "conhecimento_programa_nacional_imunizacoes_readme",
+      "target": "pni"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "clinico/CALENDARIO_NACIONAL_DE_VACINACAO.md",
+      "source": "clinico_calendario_nacional_de_vacinacao",
+      "target": "si_pni"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "conhecimento/sistemas/README.md",
+      "source": "conhecimento_sistemas_readme",
+      "target": "si_pni"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "clinico/CALENDARIO_NACIONAL_DE_VACINACAO.md",
+      "source": "clinico_calendario_nacional_de_vacinacao",
+      "target": "e_sus_pec"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "conhecimento/sistemas/README.md",
+      "source": "conhecimento_sistemas_readme",
+      "target": "e_sus_pec"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "clinico/CALENDARIO_NACIONAL_DE_VACINACAO.md",
+      "source": "clinico_calendario_nacional_de_vacinacao",
+      "target": "rnds"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "conhecimento/sistemas/README.md",
+      "source": "conhecimento_sistemas_readme",
+      "target": "rnds"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "clinico/CALENDARIO_NACIONAL_DE_VACINACAO.md",
+      "source": "clinico_calendario_nacional_de_vacinacao",
+      "target": "rede_de_frio"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "conhecimento/imunobiologicos/README.md",
+      "source": "conhecimento_imunobiologicos_readme",
+      "target": "clinico_calendario_nacional_de_vacinacao"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "conhecimento/MANIFESTO_DA_BASE.md",
+      "source": "conhecimento_manifesto_da_base",
+      "target": "clinico_calendario_nacional_de_vacinacao"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "conhecimento/README.md",
+      "source": "conhecimento_readme",
+      "target": "conhecimento_modelo_objeto_conhecimento"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "conhecimento/REDE_DE_FRIO.md",
+      "source": "conhecimento_rede_de_frio",
+      "target": "sistema_esus_pec"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "conhecimento/REDE_DE_FRIO.md",
+      "source": "conhecimento_rede_de_frio",
+      "target": "sistema_rnds"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "conhecimento/REDE_DE_FRIO.md",
+      "source": "conhecimento_rede_de_frio",
+      "target": "sistema_si_pni"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "docs/DIARIO_DE_BORDO.md",
+      "source": "docs_diario_de_bordo",
+      "target": "docs_memorias_da_trilha"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "conhecimento/PADRAO_DA_BASE_DE_CONHECIMENTO.md",
+      "source": "conhecimento_padrao_da_base_de_conhecimento",
+      "target": "conhecimento_template_objeto_conhecimento"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/AI_CONTEXT.md",
+      "source": "docs_ai_context",
+      "target": "docs_arquitetura_arquitetura_da_trilha"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/AI_CONTEXT.md",
+      "source": "docs_ai_context",
+      "target": "docs_principios_da_plataforma"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/AI_CONTEXT.md",
+      "source": "docs_ai_context",
+      "target": "docs_visao_do_projeto"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/HOME_VERSAO_1.md",
+      "source": "docs_home_versao_1",
+      "target": "docs_arquitetura_arquitetura_da_trilha"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/HOME_VERSAO_1.md",
+      "source": "docs_home_versao_1",
+      "target": "docs_jornada_do_usuario"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/HOME_VERSAO_1.md",
+      "source": "docs_home_versao_1",
+      "target": "docs_publico_e_cenarios_de_uso"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/HOME_VERSAO_1.md",
+      "source": "docs_home_versao_1",
+      "target": "docs_visao_do_projeto"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/JORNADA_DO_USUARIO.md",
+      "source": "docs_jornada_do_usuario",
+      "target": "docs_arquitetura_arquitetura_da_trilha"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/JORNADA_DO_USUARIO.md",
+      "source": "docs_jornada_do_usuario",
+      "target": "docs_publico_e_cenarios_de_uso"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/JORNADA_DO_USUARIO.md",
+      "source": "docs_jornada_do_usuario",
+      "target": "docs_visao_do_projeto"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/PRINCIPIOS_DA_PLATAFORMA.md",
+      "source": "docs_principios_da_plataforma",
+      "target": "docs_arquitetura_arquitetura_da_trilha"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/PRINCIPIOS_DA_PLATAFORMA.md",
+      "source": "docs_principios_da_plataforma",
+      "target": "docs_visao_do_projeto"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/PUBLICO_E_CENARIOS_DE_USO.md",
+      "source": "docs_publico_e_cenarios_de_uso",
+      "target": "docs_visao_do_projeto"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/ROADMAP.md",
+      "source": "docs_roadmap",
+      "target": "docs_arquitetura_arquitetura_da_trilha"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/ROADMAP.md",
+      "source": "docs_roadmap",
+      "target": "docs_visao_do_projeto"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/VISAO_DO_PROJETO.md",
+      "source": "docs_visao_do_projeto",
+      "target": "docs_arquitetura_arquitetura_da_trilha"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/arquitetura/ARQUITETURA_DA_TRILHA.md",
+      "source": "docs_arquitetura_arquitetura_da_trilha",
+      "target": "docs_arquitetura_arquitetura_da_base_de_conhecimento"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/arquitetura/ARQUITETURA_DA_TRILHA.md",
+      "source": "docs_arquitetura_arquitetura_da_trilha",
+      "target": "docs_arquitetura_arquitetura_do_grafo_semantico"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/arquitetura/ARQUITETURA_DA_TRILHA.md",
+      "source": "docs_arquitetura_arquitetura_da_trilha",
+      "target": "docs_arquitetura_arquitetura_dos_agentes_ia"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/arquitetura/ARQUITETURA_DA_TRILHA.md",
+      "source": "docs_arquitetura_arquitetura_da_trilha",
+      "target": "docs_arquitetura_fluxo_de_atualizacao_da_base"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/arquitetura/ARQUITETURA_DA_TRILHA.md",
+      "source": "docs_arquitetura_arquitetura_da_trilha",
+      "target": "docs_arquitetura_roadmap_da_arquitetura"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "conhecimento/SIPNI.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "conhecimento_sipni_rqdv",
+      "target": "conhecimento_sipni_sipni"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "conhecimento/SIPNI.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "conhecimento_sipni_sipni",
+      "target": "conhecimento_sipni_calendario_nacional"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "conhecimento/SIPNI.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "conhecimento_sipni_sipni",
+      "target": "conhecimento_sipni_esus_pec"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "conhecimento/SIPNI.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "conhecimento_sipni_sipni",
+      "target": "conhecimento_sipni_imunobiologicos"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "conhecimento/SIPNI.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "conhecimento_sipni_sipni",
+      "target": "conhecimento_sipni_pni"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "conhecimento/SIPNI.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "conhecimento_sipni_sipni",
+      "target": "conhecimento_sipni_rede_de_frio"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "conhecimento/SIPNI.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "conhecimento_sipni_sipni",
+      "target": "conhecimento_sipni_rnds"
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "experiencia_do_usuario",
+      "label": "Defini\u00e7\u00e3o da Experi\u00eancia do Usu\u00e1rio",
+      "nodes": [
+        "docs_home_versao_1",
+        "docs_jornada_do_usuario",
+        "docs_publico_e_cenarios_de_uso"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "docs/HOME_VERSAO_1.md"
+    },
+    {
+      "id": "projeto_visao_estrategica",
+      "label": "Vis\u00e3o Estrat\u00e9gica do Projeto",
+      "nodes": [
+        "docs_visao_do_projeto",
+        "docs_principios_da_plataforma",
+        "docs_roadmap",
+        "docs_ai_context"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "docs/VISAO_DO_PROJETO.md"
+    },
+    {
+      "id": "arquitetura_core_docs",
+      "label": "Documenta\u00e7\u00e3o de Arquitetura",
+      "nodes": [
+        "docs_arquitetura_arquitetura_da_trilha",
+        "docs_arquitetura_arquitetura_da_base_de_conhecimento",
+        "docs_arquitetura_arquitetura_do_grafo_semantico",
+        "docs_arquitetura_arquitetura_dos_agentes_ia",
+        "docs_arquitetura_fluxo_de_atualizacao_da_base",
+        "docs_arquitetura_roadmap_da_arquitetura"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/arquitetura/ARQUITETURA_DA_TRILHA.md"
+    },
+    {
+      "id": "vacinacao_data_flow",
+      "label": "Fluxo de Dados de Vacina\u00e7\u00e3o",
+      "nodes": [
+        "conhecimento_sipni_sipni",
+        "conhecimento_sipni_rnds",
+        "conhecimento_sipni_rqdv"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.85,
+      "source_file": "conhecimento/SIPNI.md"
+    },
+    {
+      "id": "base_conhecimento_structure",
+      "label": "Estrutura da Base de Conhecimento",
+      "nodes": [
+        "conhecimento_readme",
+        "conhecimento_manifesto_da_base",
+        "conhecimento_mapa_da_base"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "conhecimento/README.md"
+    },
+    {
+      "id": "trilha_imunizacao_core_systems",
+      "label": "Sistemas Centrais da Trilha de Imuniza\u00e7\u00e3o",
+      "nodes": [
+        "si_pni",
+        "e_sus_pec",
+        "rnds"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.95,
+      "source_file": "conhecimento/sistemas/README.md"
+    },
+    {
+      "id": "knowledge_base_structure",
+      "label": "Knowledge Base Structural Framework",
+      "nodes": [
+        "conhecimento_arquitetura_da_base",
+        "conhecimento_modelo_objeto_de_conhecimento",
+        "conhecimento_padrao_de_metadados",
+        "conhecimento_taxonomia_dos_objetos",
+        "conhecimento_criterios_de_qualidade"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "id": "immunization_domain_entities",
+      "label": "Immunization Domain Entities",
+      "nodes": [
+        "conhecimento_programa_nacional_imunizacoes_pni",
+        "conhecimento_imunobiologicos_vacinas_bcg_bcg"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    }
+  ]
+}

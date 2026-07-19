@@ -1,0 +1,182 @@
+{
+  "CHANGELOG.md": {
+    "mtime": 1783652288.9819064,
+    "ast_hash": "58c70ccca3c754e3720ebf4c76c990ab",
+    "semantic_hash": "58c70ccca3c754e3720ebf4c76c990ab"
+  },
+  "README.md": {
+    "mtime": 1783476316.5022697,
+    "ast_hash": "a61c92380ad66fa8fc52b02d6292d580",
+    "semantic_hash": "a61c92380ad66fa8fc52b02d6292d580"
+  },
+  "conhecimento/ARQUITETURA_DA_BASE.md": {
+    "mtime": 1783729825.8572605,
+    "ast_hash": "77f10977dfb5ce51d55400d84dde5319",
+    "semantic_hash": "77f10977dfb5ce51d55400d84dde5319"
+  },
+  "conhecimento/CRITERIOS_DE_QUALIDADE.md": {
+    "mtime": 1783563512.3343537,
+    "ast_hash": "157763243244f26af00212c73ec45c05",
+    "semantic_hash": "157763243244f26af00212c73ec45c05"
+  },
+  "conhecimento/GUIA_EDITORIAL.md": {
+    "mtime": 1783369269.4383352,
+    "ast_hash": "981d2ecdc637206a2e6036c3b1492219",
+    "semantic_hash": "981d2ecdc637206a2e6036c3b1492219"
+  },
+  "conhecimento/MODELO_OBJETO_DE_CONHECIMENTO.md": {
+    "mtime": 1783560681.3663802,
+    "ast_hash": "113f3311a67c236a3da3ec7ef8d2a143",
+    "semantic_hash": "113f3311a67c236a3da3ec7ef8d2a143"
+  },
+  "conhecimento/PADRAO_DE_METADADOS.md": {
+    "mtime": 1783559771.922514,
+    "ast_hash": "5aa14620556c25bf814913d35611a683",
+    "semantic_hash": "5aa14620556c25bf814913d35611a683"
+  },
+  "conhecimento/TAXONOMIA_DOS_OBJETOS.md": {
+    "mtime": 1783476309.386518,
+    "ast_hash": "7d29a44c101f733b776cd84dc54d2aa5",
+    "semantic_hash": "7d29a44c101f733b776cd84dc54d2aa5"
+  },
+  "conhecimento/imunobiologicos/MODELO.md": {
+    "mtime": 1783353275.160556,
+    "ast_hash": "b0e2348272312647fc46241d0667a488",
+    "semantic_hash": "b0e2348272312647fc46241d0667a488"
+  },
+  "conhecimento/imunobiologicos/vacinas/MODELO_VACINA.md": {
+    "mtime": 1783562645.184517,
+    "ast_hash": "207a4af2bc30bc2e2132a691ec3785a7",
+    "semantic_hash": "207a4af2bc30bc2e2132a691ec3785a7"
+  },
+  "conhecimento/imunobiologicos/vacinas/bcg/BCG.md": {
+    "mtime": 1783651061.4939377,
+    "ast_hash": "f682984c2b2de27c11b0d400b45f2828",
+    "semantic_hash": "f682984c2b2de27c11b0d400b45f2828"
+  },
+  "conhecimento/programa_nacional_imunizacoes/PNI.md": {
+    "mtime": 1783469992.8373907,
+    "ast_hash": "c976bb2b6b7320c3eae931f44b3a4cf1",
+    "semantic_hash": "c976bb2b6b7320c3eae931f44b3a4cf1"
+  },
+  "docs/ARQUITETURA_DA_TRILHA.md": {
+    "mtime": 1783125986.3155758,
+    "ast_hash": "25a24d391cc0861267cbfa3f58b1ea6c",
+    "semantic_hash": "25a24d391cc0861267cbfa3f58b1ea6c"
+  },
+  "docs/GUIA_IDENTIDADE_VISUAL.md": {
+    "mtime": 1782685188.2061415,
+    "ast_hash": "d9e5ff4d81b206c5d504aa837ca16a40",
+    "semantic_hash": "d9e5ff4d81b206c5d504aa837ca16a40"
+  },
+  "docs/NUCLEO_DO_CONHECIMENTO.md": {
+    "mtime": 1783351092.7082846,
+    "ast_hash": "ce737885ff9fadea905c8d42db229343",
+    "semantic_hash": "ce737885ff9fadea905c8d42db229343"
+  },
+  "docs/PRINCIPIOS_DA_PLATAFORMA.md": {
+    "mtime": 1782694854.6431518,
+    "ast_hash": "02872d701098bab9a04bb81cd7ac4793",
+    "semantic_hash": "02872d701098bab9a04bb81cd7ac4793"
+  },
+  "index.html": {
+    "mtime": 1783039719.5784814,
+    "ast_hash": "66543a0753272728e86054fad0fbc5db",
+    "semantic_hash": "66543a0753272728e86054fad0fbc5db"
+  },
+  "clinico/CALENDARIO_NACIONAL_DE_VACINACAO.md": {
+    "mtime": 1784146759.1557677,
+    "ast_hash": "ef12ce85581be08830c2df42a973ab86",
+    "semantic_hash": "ef12ce85581be08830c2df42a973ab86"
+  },
+  "conhecimento/MANIFESTO_DA_BASE.md": {
+    "mtime": 1784146461.5486891,
+    "ast_hash": "9d9b68d3fe4eade1da1dcc21229932aa",
+    "semantic_hash": "9d9b68d3fe4eade1da1dcc21229932aa"
+  },
+  "conhecimento/MAPA_DA_BASE.md": {
+    "mtime": 1784147799.6262388,
+    "ast_hash": "6dae0128ffef731b72b35d60f87897ba",
+    "semantic_hash": "6dae0128ffef731b72b35d60f87897ba"
+  },
+  "conhecimento/MODELO_OBJETO_CONHECIMENTO.md": {
+    "mtime": 1784146622.8202534,
+    "ast_hash": "384e5b11246d081d3a5710ba9a2637e0",
+    "semantic_hash": "384e5b11246d081d3a5710ba9a2637e0"
+  },
+  "conhecimento/README.md": {
+    "mtime": 1783733652.7806952,
+    "ast_hash": "4c4880d2a01deec61a59600976ef837e",
+    "semantic_hash": "4c4880d2a01deec61a59600976ef837e"
+  },
+  "conhecimento/imunobiologicos/README.md": {
+    "mtime": 1783476359.743355,
+    "ast_hash": "3e8a83e89eedf718c19e321f2ca0115d",
+    "semantic_hash": "3e8a83e89eedf718c19e321f2ca0115d"
+  },
+  "conhecimento/programa_nacional_imunizacoes/README.md": {
+    "mtime": 1783367247.6884596,
+    "ast_hash": "0aedabbce4b2fca87480f89885f72fe7",
+    "semantic_hash": "0aedabbce4b2fca87480f89885f72fe7"
+  },
+  "conhecimento/sistemas/README.md": {
+    "mtime": 1783366356.217905,
+    "ast_hash": "697a75719cf0981ce2150c6e8eb32e34",
+    "semantic_hash": "697a75719cf0981ce2150c6e8eb32e34"
+  },
+  "docs/VISAO_DO_PROJETO.md": {
+    "mtime": 1782592449.0033443,
+    "ast_hash": "0fc2ed59bfce23546f53cda10a2a88bd",
+    "semantic_hash": "0fc2ed59bfce23546f53cda10a2a88bd"
+  },
+  "conhecimento/REDE_DE_FRIO.md": {
+    "mtime": 1784168493.6735957,
+    "ast_hash": "2ff8b935dbc2f8837c2f3f6ab6e53bf0",
+    "semantic_hash": "2ff8b935dbc2f8837c2f3f6ab6e53bf0"
+  },
+  "conhecimento/programa_nacional_imunizacoes/MODELO.md": {
+    "mtime": 1783367583.6187592,
+    "ast_hash": "aa13d7b473ccac78d2d57095f9fd3a75",
+    "semantic_hash": "aa13d7b473ccac78d2d57095f9fd3a75"
+  },
+  "docs/AI_CONTEXT.md": {
+    "mtime": 1783123169.9406073,
+    "ast_hash": "c0ca5939ff0fbdd07e68b22fcd5a0c61",
+    "semantic_hash": "c0ca5939ff0fbdd07e68b22fcd5a0c61"
+  },
+  "docs/BACKLOG.md": {
+    "mtime": 1782593228.2180836,
+    "ast_hash": "46d4080fb0244757b249d33c1941e1ee",
+    "semantic_hash": "46d4080fb0244757b249d33c1941e1ee"
+  },
+  "docs/DIARIO_DE_BORDO.md": {
+    "mtime": 1783117046.773157,
+    "ast_hash": "3739ddbf3a484df928eca16b7e71738b",
+    "semantic_hash": "3739ddbf3a484df928eca16b7e71738b"
+  },
+  "docs/HOME_VERSAO_1.md": {
+    "mtime": 1782873299.6255019,
+    "ast_hash": "6ef2408be9b9a9ac9f0e0a402e2f3197",
+    "semantic_hash": "6ef2408be9b9a9ac9f0e0a402e2f3197"
+  },
+  "docs/JORNADA_DO_USUARIO.md": {
+    "mtime": 1782689441.0573964,
+    "ast_hash": "9c0c5c5d87681cfcc818230696e27d13",
+    "semantic_hash": "9c0c5c5d87681cfcc818230696e27d13"
+  },
+  "docs/MEMORIAS_DA_TRILHA.md": {
+    "mtime": 1783033730.276281,
+    "ast_hash": "57fa58f3ba3f45dfe31d72db9e219ea8",
+    "semantic_hash": "57fa58f3ba3f45dfe31d72db9e219ea8"
+  },
+  "docs/PUBLICO_E_CENARIOS_DE_USO.md": {
+    "mtime": 1782597741.239009,
+    "ast_hash": "87984406d2589e86f28e4810409b10a1",
+    "semantic_hash": "87984406d2589e86f28e4810409b10a1"
+  },
+  "docs/ROADMAP.md": {
+    "mtime": 1782592449.0066316,
+    "ast_hash": "8b40f99f61f9a4c1d21c690318d0f95a",
+    "semantic_hash": "8b40f99f61f9a4c1d21c690318d0f95a"
+  }
+}

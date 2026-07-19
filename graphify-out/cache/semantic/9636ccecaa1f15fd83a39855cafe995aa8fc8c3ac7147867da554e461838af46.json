@@ -1,0 +1,1 @@
+{"nodes": [{"id": "docs_diario_de_bordo", "label": "Di\u00e1rio de Bordo", "file_type": "document", "source_file": "docs/DIARIO_DE_BORDO.md"}], "edges": [{"source": "docs_diario_de_bordo", "target": "docs_memorias_da_trilha", "relation": "conceptually_related_to", "confidence": "INFERRED", "confidence_score": 0.9, "source_file": "docs/DIARIO_DE_BORDO.md"}], "hyperedges": []}

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>graphify - graphify-out\graph.html</title>
+<script src="https://unpkg.com/vis-network@9.1.6/standalone/umd/vis-network.min.js"
+        integrity="sha384-Ux6phic9PEHJ38YtrijhkzyJ8yQlH8i/+buBR8s3mAZOJrP1gwyvAcIYl3GWtpX1"
+        crossorigin="anonymous"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0f0f1a; color: #e0e0e0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; display: flex; height: 100vh; overflow: hidden; }
+  #graph { flex: 1; }
+  #sidebar { width: 280px; background: #1a1a2e; border-left: 1px solid #2a2a4e; display: flex; flex-direction: column; overflow: hidden; }
+  #search-wrap { padding: 12px; border-bottom: 1px solid #2a2a4e; }
+  #search { width: 100%; background: #0f0f1a; border: 1px solid #3a3a5e; color: #e0e0e0; padding: 7px 10px; border-radius: 6px; font-size: 13px; outline: none; }
+  #search:focus { border-color: #4E79A7; }
+  #search-results { max-height: 140px; overflow-y: auto; padding: 4px 12px; border-bottom: 1px solid #2a2a4e; display: none; }
+  .search-item { padding: 4px 6px; cursor: pointer; border-radius: 4px; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .search-item:hover { background: #2a2a4e; }
+  #info-panel { padding: 14px; border-bottom: 1px solid #2a2a4e; min-height: 140px; }
+  #info-panel h3 { font-size: 13px; color: #aaa; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+  #info-content { font-size: 13px; color: #ccc; line-height: 1.6; }
+  #info-content .field { margin-bottom: 5px; }
+  #info-content .field b { color: #e0e0e0; }
+  #info-content .empty { color: #555; font-style: italic; }
+  .neighbor-link { display: block; padding: 2px 6px; margin: 2px 0; border-radius: 3px; cursor: pointer; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border-left: 3px solid #333; }
+  .neighbor-link:hover { background: #2a2a4e; }
+  #neighbors-list { max-height: 160px; overflow-y: auto; margin-top: 4px; }
+  #legend-wrap { flex: 1; overflow-y: auto; padding: 12px; }
+  #legend-wrap h3 { font-size: 13px; color: #aaa; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .legend-item { display: flex; align-items: center; gap: 8px; padding: 4px 0; cursor: pointer; border-radius: 4px; font-size: 12px; }
+  .legend-item:hover { background: #2a2a4e; padding-left: 4px; }
+  .legend-item.dimmed { opacity: 0.35; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+  .legend-label { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .legend-count { color: #666; font-size: 11px; }
+  #stats { padding: 10px 14px; border-top: 1px solid #2a2a4e; font-size: 11px; color: #555; }
+  #legend-controls { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; padding: 4px 0; }
+  #legend-controls label { display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 12px; color: #aaa; user-select: none; }
+  #legend-controls label:hover { color: #e0e0e0; }
+  .legend-cb, #select-all-cb { appearance: none; -webkit-appearance: none; width: 14px; height: 14px; border: 1.5px solid #3a3a5e; border-radius: 3px; background: #0f0f1a; cursor: pointer; position: relative; flex-shrink: 0; }
+  .legend-cb:checked, #select-all-cb:checked { background: #4E79A7; border-color: #4E79A7; }
+  .legend-cb:checked::after, #select-all-cb:checked::after { content: ''; position: absolute; left: 3.5px; top: 1px; width: 4px; height: 7px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+  #select-all-cb:indeterminate { background: #4E79A7; border-color: #4E79A7; }
+  #select-all-cb:indeterminate::after { content: ''; position: absolute; left: 2px; top: 5px; width: 8px; height: 2px; background: #fff; border: none; transform: none; }
+</style>
+</head>
+<body>
+<div id="graph"></div>
+<div id="sidebar">
+  <div id="search-wrap">
+    <input id="search" type="text" placeholder="Search nodes..." autocomplete="off">
+    <div id="search-results"></div>
+  </div>
+  <div id="info-panel">
+    <h3>Node Info</h3>
+    <div id="info-content"><span class="empty">Click a node to inspect it</span></div>
+  </div>
+  <div id="legend-wrap">
+    <h3>Communities</h3>
+    <div id="legend-controls">
+      <label><input type="checkbox" id="select-all-cb" checked onchange="toggleAllCommunities(!this.checked)">Select All</label>
+    </div>
+    <div id="legend"></div>
+  </div>
+  <div id="stats">60 nodes &middot; 46 edges &middot; 26 communities</div>
+</div>
+<script>
+const RAW_NODES = [{"id": "changelog", "label": "Changelog", "color": {"background": "#FF9DA7", "border": "#FF9DA7", "highlight": {"background": "#ffffff", "border": "#FF9DA7"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "Changelog", "community": 7, "community_name": "Change History", "source_file": "CHANGELOG.md", "file_type": "document", "degree": 0}, {"id": "readme", "label": "Trilha de Imuniza\u00e7\u00e3o README", "color": {"background": "#EDC948", "border": "#EDC948", "highlight": {"background": "#ffffff", "border": "#EDC948"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "Trilha de Imuniza\u00e7\u00e3o README", "community": 25, "community_name": "Immunization Trail Documentation", "source_file": "README.md", "file_type": "document", "degree": 0}, {"id": "conhecimento_arquitetura_da_base", "label": "Arquitetura da Base de Conhecimento", "color": {"background": "#9C755F", "border": "#9C755F", "highlight": {"background": "#ffffff", "border": "#9C755F"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "Arquitetura da Base de Conhecimento", "community": 8, "community_name": "Knowledge Base Architecture", "source_file": "conhecimento/ARQUITETURA_DA_BASE.md", "file_type": "document", "degree": 0}, {"id": "conhecimento_criterios_de_qualidade", "label": "Crit\u00e9rios de Qualidade", "color": {"background": "#BAB0AC", "border": "#BAB0AC", "highlight": {"background": "#ffffff", "border": "#BAB0AC"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "Crit\u00e9rios de Qualidade", "community": 9, "community_name": "Quality Standards", "source_file": "conhecimento/CRITERIOS_DE_QUALIDADE.md", "file_type": "document", "degree": 0}, {"id": "conhecimento_guia_editorial", "label": "Guia Editorial", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "Guia Editorial", "community": 11, "community_name": "Editorial Guidelines", "source_file": "conhecimento/GUIA_EDITORIAL.md", "file_type": "document", "degree": 0}, {"id": "conhecimento_modelo_objeto_de_conhecimento", "label": "Modelo de Objeto de Conhecimento", "color": {"background": "#B07AA1", "border": "#B07AA1", "highlight": {"background": "#ffffff", "border": "#B07AA1"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "Modelo de Objeto de Conhecimento", "community": 16, "community_name": "Knowledge Object Structure", "source_file": "conhecimento/MODELO_OBJETO_DE_CONHECIMENTO.md", "file_type": "document", "degree": 0}, {"id": "conhecimento_padrao_de_metadados", "label": "Padr\u00e3o de Metadados", "color": {"background": "#FF9DA7", "border": "#FF9DA7", "highlight": {"background": "#ffffff", "border": "#FF9DA7"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "Padr\u00e3o de Metadados", "community": 17, "community_name": "Metadata Standards", "source_file": "conhecimento/PADRAO_DE_METADADOS.md", "file_type": "document", "degree": 0}, {"id": "conhecimento_taxonomia_dos_objetos", "label": "Taxonomia dos Objetos", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "Taxonomia dos Objetos", "community": 20, "community_name": "Object Taxonomy", "source_file": "conhecimento/TAXONOMIA_DOS_OBJETOS.md", "file_type": "document", "degree": 0}, {"id": "conhecimento_imunobiologicos_modelo", "label": "Modelo de Imunobiol\u00f3gico", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "Modelo de Imunobiol\u00f3gico", "community": 12, "community_name": "Immunobiological Data Model", "source_file": "conhecimento/imunobiologicos/MODELO.md", "file_type": "document", "degree": 0}, {"id": "conhecimento_imunobiologicos_vacinas_modelo_vacina", "label": "Modelo de Vacina", "color": {"background": "#59A14F", "border": "#59A14F", "highlight": {"background": "#ffffff", "border": "#59A14F"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "Modelo de Vacina", "community": 14, "community_name": "Vaccine Data Model", "source_file": "conhecimento/imunobiologicos/vacinas/MODELO_VACINA.md", "file_type": "document", "degree": 0}, {"id": "conhecimento_imunobiologicos_vacinas_bcg_bcg", "label": "Objeto de Conhecimento: BCG", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "Objeto de Conhecimento: BCG", "community": 13, "community_name": "BCG Vaccine Documentation", "source_file": "conhecimento/imunobiologicos/vacinas/bcg/BCG.md", "file_type": "document", "degree": 0}, {"id": "conhecimento_programa_nacional_imunizacoes_pni", "label": "Programa Nacional de Imuniza\u00e7\u00f5es (PNI)", "color": {"background": "#BAB0AC", "border": "#BAB0AC", "highlight": {"background": "#ffffff", "border": "#BAB0AC"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "Programa Nacional de Imuniza\u00e7\u00f5es (PNI)", "community": 19, "community_name": "National Immunization Program", "source_file": "conhecimento/programa_nacional_imunizacoes/PNI.md", "file_type": "document", "degree": 0}, {"id": "docs_guia_identidade_visual", "label": "Guia de Identidade Visual", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "Guia de Identidade Visual", "community": 22, "community_name": "Visual Identity Guidelines", "source_file": "docs/GUIA_IDENTIDADE_VISUAL.md", "file_type": "document", "degree": 0}, {"id": "docs_nucleo_do_conhecimento", "label": "N\u00facleo do Conhecimento", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "N\u00facleo do Conhecimento", "community": 23, "community_name": "Core Knowledge Base", "source_file": "docs/NUCLEO_DO_CONHECIMENTO.md", "file_type": "document", "degree": 0}, {"id": "index_html", "label": "Trilha de Imuniza\u00e7\u00e3o Home", "color": {"background": "#59A14F", "border": "#59A14F", "highlight": {"background": "#ffffff", "border": "#59A14F"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "Trilha de Imuniza\u00e7\u00e3o Home", "community": 24, "community_name": "Immunization Trail Homepage", "source_file": "index.html", "file_type": "code", "degree": 0}, {"id": "pni", "label": "Programa Nacional de Imuniza\u00e7\u00f5es", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 18.2, "font": {"size": 12, "color": "#ffffff"}, "title": "Programa Nacional de Imuniza\u00e7\u00f5es", "community": 1, "community_name": "National Immunization Systems", "source_file": "", "file_type": "concept", "degree": 3}, {"id": "si_pni", "label": "SI-PNI", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 15.5, "font": {"size": 12, "color": "#ffffff"}, "title": "SI-PNI", "community": 1, "community_name": "National Immunization Systems", "source_file": "", "file_type": "concept", "degree": 2}, {"id": "e_sus_pec", "label": "e-SUS PEC", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 15.5, "font": {"size": 12, "color": "#ffffff"}, "title": "e-SUS PEC", "community": 1, "community_name": "National Immunization Systems", "source_file": "", "file_type": "concept", "degree": 2}, {"id": "rnds", "label": "RNDS", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 15.5, "font": {"size": 12, "color": "#ffffff"}, "title": "RNDS", "community": 1, "community_name": "National Immunization Systems", "source_file": "", "file_type": "concept", "degree": 2}, {"id": "rede_de_frio", "label": "Rede de Frio", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 12.7, "font": {"size": 0, "color": "#ffffff"}, "title": "Rede de Frio", "community": 1, "community_name": "National Immunization Systems", "source_file": "", "file_type": "concept", "degree": 1}, {"id": "clinico_calendario_nacional_de_vacinacao", "label": "Calend\u00e1rio Nacional de Vacina\u00e7\u00e3o", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 29.1, "font": {"size": 12, "color": "#ffffff"}, "title": "Calend\u00e1rio Nacional de Vacina\u00e7\u00e3o", "community": 1, "community_name": "National Immunization Systems", "source_file": "clinico/CALENDARIO_NACIONAL_DE_VACINACAO.md", "file_type": "document", "degree": 7}, {"id": "conhecimento_manifesto_da_base", "label": "Manifesto da Base de Conhecimento", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 12.7, "font": {"size": 0, "color": "#ffffff"}, "title": "Manifesto da Base de Conhecimento", "community": 1, "community_name": "National Immunization Systems", "source_file": "conhecimento/MANIFESTO_DA_BASE.md", "file_type": "document", "degree": 1}, {"id": "conhecimento_mapa_da_base", "label": "Mapa da Base de Conhecimento", "color": {"background": "#EDC948", "border": "#EDC948", "highlight": {"background": "#ffffff", "border": "#EDC948"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "Mapa da Base de Conhecimento", "community": 15, "community_name": "Knowledge Base Map", "source_file": "conhecimento/MAPA_DA_BASE.md", "file_type": "document", "degree": 0}, {"id": "conhecimento_modelo_objeto_conhecimento", "label": "Modelo de Objeto de Conhecimento", "color": {"background": "#59A14F", "border": "#59A14F", "highlight": {"background": "#ffffff", "border": "#59A14F"}}, "size": 12.7, "font": {"size": 0, "color": "#ffffff"}, "title": "Modelo de Objeto de Conhecimento", "community": 4, "community_name": "Knowledge Object Documentation", "source_file": "conhecimento/MODELO_OBJETO_CONHECIMENTO.md", "file_type": "document", "degree": 1}, {"id": "conhecimento_readme", "label": "Base de Conhecimento README", "color": {"background": "#59A14F", "border": "#59A14F", "highlight": {"background": "#ffffff", "border": "#59A14F"}}, "size": 12.7, "font": {"size": 0, "color": "#ffffff"}, "title": "Base de Conhecimento README", "community": 4, "community_name": "Knowledge Object Documentation", "source_file": "conhecimento/README.md", "file_type": "document", "degree": 1}, {"id": "conhecimento_imunobiologicos_readme", "label": "Imunobiol\u00f3gicos", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 15.5, "font": {"size": 12, "color": "#ffffff"}, "title": "Imunobiol\u00f3gicos", "community": 1, "community_name": "National Immunization Systems", "source_file": "conhecimento/imunobiologicos/README.md", "file_type": "document", "degree": 2}, {"id": "conhecimento_programa_nacional_imunizacoes_readme", "label": "Programa Nacional de Imuniza\u00e7\u00f5es (PNI)", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 12.7, "font": {"size": 0, "color": "#ffffff"}, "title": "Programa Nacional de Imuniza\u00e7\u00f5es (PNI)", "community": 1, "community_name": "National Immunization Systems", "source_file": "conhecimento/programa_nacional_imunizacoes/README.md", "file_type": "document", "degree": 1}, {"id": "conhecimento_sistemas_readme", "label": "Sistemas de Informa\u00e7\u00e3o", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 18.2, "font": {"size": 12, "color": "#ffffff"}, "title": "Sistemas de Informa\u00e7\u00e3o", "community": 1, "community_name": "National Immunization Systems", "source_file": "conhecimento/sistemas/README.md", "file_type": "document", "degree": 3}, {"id": "conhecimento_rede_de_frio", "label": "Rede de Frio", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 18.2, "font": {"size": 12, "color": "#ffffff"}, "title": "Rede de Frio", "community": 3, "community_name": "Health Information Networks", "source_file": "conhecimento/REDE_DE_FRIO.md", "file_type": "document", "degree": 3}, {"id": "sistema_si_pni", "label": "SI-PNI", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 12.7, "font": {"size": 0, "color": "#ffffff"}, "title": "SI-PNI", "community": 3, "community_name": "Health Information Networks", "source_file": "conhecimento/REDE_DE_FRIO.md", "file_type": "concept", "degree": 1}, {"id": "sistema_esus_pec", "label": "e-SUS PEC", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 12.7, "font": {"size": 0, "color": "#ffffff"}, "title": "e-SUS PEC", "community": 3, "community_name": "Health Information Networks", "source_file": "conhecimento/REDE_DE_FRIO.md", "file_type": "concept", "degree": 1}, {"id": "sistema_rnds", "label": "RNDS", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 12.7, "font": {"size": 0, "color": "#ffffff"}, "title": "RNDS", "community": 3, "community_name": "Health Information Networks", "source_file": "conhecimento/REDE_DE_FRIO.md", "file_type": "concept", "degree": 1}, {"id": "conhecimento_programa_nacional_imunizacoes_modelo", "label": "Modelo de Objeto de Conhecimento", "color": {"background": "#9C755F", "border": "#9C755F", "highlight": {"background": "#ffffff", "border": "#9C755F"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "Modelo de Objeto de Conhecimento", "community": 18, "community_name": "Knowledge Object Framework", "source_file": "conhecimento/programa_nacional_imunizacoes/MODELO.md", "file_type": "document", "degree": 0}, {"id": "docs_backlog", "label": "Backlog", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "Backlog", "community": 21, "community_name": "Project Backlog", "source_file": "docs/BACKLOG.md", "file_type": "document", "degree": 0}, {"id": "docs_diario_de_bordo", "label": "Di\u00e1rio de Bordo", "color": {"background": "#B07AA1", "border": "#B07AA1", "highlight": {"background": "#ffffff", "border": "#B07AA1"}}, "size": 12.7, "font": {"size": 0, "color": "#ffffff"}, "title": "Di\u00e1rio de Bordo", "community": 6, "community_name": "Project Logs and Memories", "source_file": "docs/DIARIO_DE_BORDO.md", "file_type": "document", "degree": 1}, {"id": "docs_memorias_da_trilha", "label": "Mem\u00f3rias da Trilha", "color": {"background": "#B07AA1", "border": "#B07AA1", "highlight": {"background": "#ffffff", "border": "#B07AA1"}}, "size": 12.7, "font": {"size": 0, "color": "#ffffff"}, "title": "Mem\u00f3rias da Trilha", "community": 6, "community_name": "Project Logs and Memories", "source_file": "docs/MEMORIAS_DA_TRILHA.md", "file_type": "document", "degree": 1}, {"id": "conhecimento_glossario_glossario", "label": "Gloss\u00e1rio", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "Gloss\u00e1rio", "community": 10, "community_name": "Glossary of Terms", "source_file": "conhecimento/GLOSSARIO.md", "file_type": "document", "degree": 0}, {"id": "conhecimento_padrao_da_base_de_conhecimento", "label": "Padr\u00e3o da Base de Conhecimento", "color": {"background": "#EDC948", "border": "#EDC948", "highlight": {"background": "#ffffff", "border": "#EDC948"}}, "size": 12.7, "font": {"size": 0, "color": "#ffffff"}, "title": "Padr\u00e3o da Base de Conhecimento", "community": 5, "community_name": "Knowledge Base Standards", "source_file": "conhecimento/PADRAO_DA_BASE_DE_CONHECIMENTO.md", "file_type": "document", "degree": 1}, {"id": "conhecimento_template_objeto_conhecimento", "label": "Template Objeto de Conhecimento", "color": {"background": "#EDC948", "border": "#EDC948", "highlight": {"background": "#ffffff", "border": "#EDC948"}}, "size": 12.7, "font": {"size": 0, "color": "#ffffff"}, "title": "Template Objeto de Conhecimento", "community": 5, "community_name": "Knowledge Base Standards", "source_file": "conhecimento/TEMPLATE_OBJETO_CONHECIMENTO.md", "file_type": "document", "degree": 1}, {"id": "docs_ai_context", "label": "AI Context", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 18.2, "font": {"size": 12, "color": "#ffffff"}, "title": "AI Context", "community": 0, "community_name": "AI and Platform Architecture", "source_file": "docs/AI_CONTEXT.md", "file_type": "document", "degree": 3}, {"id": "docs_home_versao_1", "label": "Home Vers\u00e3o 1", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 20.9, "font": {"size": 12, "color": "#ffffff"}, "title": "Home Vers\u00e3o 1", "community": 0, "community_name": "AI and Platform Architecture", "source_file": "docs/HOME_VERSAO_1.md", "file_type": "document", "degree": 4}, {"id": "docs_jornada_do_usuario", "label": "Jornada do Usu\u00e1rio", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 20.9, "font": {"size": 12, "color": "#ffffff"}, "title": "Jornada do Usu\u00e1rio", "community": 0, "community_name": "AI and Platform Architecture", "source_file": "docs/JORNADA_DO_USUARIO.md", "file_type": "document", "degree": 4}, {"id": "docs_principios_da_plataforma", "label": "Princ\u00edpios da Plataforma", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 18.2, "font": {"size": 12, "color": "#ffffff"}, "title": "Princ\u00edpios da Plataforma", "community": 0, "community_name": "AI and Platform Architecture", "source_file": "docs/PRINCIPIOS_DA_PLATAFORMA.md", "file_type": "document", "degree": 3}, {"id": "docs_publico_e_cenarios_de_uso", "label": "P\u00fablico e Cen\u00e1rios de Uso", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 18.2, "font": {"size": 12, "color": "#ffffff"}, "title": "P\u00fablico e Cen\u00e1rios de Uso", "community": 0, "community_name": "AI and Platform Architecture", "source_file": "docs/PUBLICO_E_CENARIOS_DE_USO.md", "file_type": "document", "degree": 3}, {"id": "docs_roadmap", "label": "Roadmap", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 15.5, "font": {"size": 12, "color": "#ffffff"}, "title": "Roadmap", "community": 0, "community_name": "AI and Platform Architecture", "source_file": "docs/ROADMAP.md", "file_type": "document", "degree": 2}, {"id": "docs_visao_do_projeto", "label": "Vis\u00e3o do Projeto", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 29.1, "font": {"size": 12, "color": "#ffffff"}, "title": "Vis\u00e3o do Projeto", "community": 0, "community_name": "AI and Platform Architecture", "source_file": "docs/VISAO_DO_PROJETO.md", "file_type": "document", "degree": 7}, {"id": "docs_arquitetura_arquitetura_da_base_de_conhecimento", "label": "Arquitetura da Base de Conhecimento", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 12.7, "font": {"size": 0, "color": "#ffffff"}, "title": "Arquitetura da Base de Conhecimento", "community": 0, "community_name": "AI and Platform Architecture", "source_file": "docs/arquitetura/ARQUITETURA_DA_BASE_DE_CONHECIMENTO.md", "file_type": "document", "degree": 1}, {"id": "docs_arquitetura_arquitetura_da_trilha", "label": "Arquitetura da Trilha", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 40.0, "font": {"size": 12, "color": "#ffffff"}, "title": "Arquitetura da Trilha", "community": 0, "community_name": "AI and Platform Architecture", "source_file": "docs/arquitetura/ARQUITETURA_DA_TRILHA.md", "file_type": "document", "degree": 11}, {"id": "docs_arquitetura_arquitetura_dos_agentes_ia", "label": "Arquitetura dos Agentes de IA", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 12.7, "font": {"size": 0, "color": "#ffffff"}, "title": "Arquitetura dos Agentes de IA", "community": 0, "community_name": "AI and Platform Architecture", "source_file": "docs/arquitetura/ARQUITETURA_DOS_AGENTES_IA.md", "file_type": "document", "degree": 1}, {"id": "docs_arquitetura_arquitetura_do_grafo_semantico", "label": "Arquitetura do Grafo Sem\u00e2ntico", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 12.7, "font": {"size": 0, "color": "#ffffff"}, "title": "Arquitetura do Grafo Sem\u00e2ntico", "community": 0, "community_name": "AI and Platform Architecture", "source_file": "docs/arquitetura/ARQUITETURA_DO_GRAFO_SEMANTICO.md", "file_type": "document", "degree": 1}, {"id": "docs_arquitetura_fluxo_de_atualizacao_da_base", "label": "Fluxo de Atualiza\u00e7\u00e3o da Base", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 12.7, "font": {"size": 0, "color": "#ffffff"}, "title": "Fluxo de Atualiza\u00e7\u00e3o da Base", "community": 0, "community_name": "AI and Platform Architecture", "source_file": "docs/arquitetura/FLUXO_DE_ATUALIZACAO_DA_BASE.md", "file_type": "document", "degree": 1}, {"id": "docs_arquitetura_roadmap_da_arquitetura", "label": "Roadmap da Arquitetura", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 12.7, "font": {"size": 0, "color": "#ffffff"}, "title": "Roadmap da Arquitetura", "community": 0, "community_name": "AI and Platform Architecture", "source_file": "docs/arquitetura/ROADMAP_DA_ARQUITETURA.md", "file_type": "document", "degree": 1}, {"id": "conhecimento_sipni_sipni", "label": "Sistema de Informa\u00e7\u00e3o do Programa Nacional de Imuniza\u00e7\u00f5es (SI-PNI)", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 29.1, "font": {"size": 12, "color": "#ffffff"}, "title": "Sistema de Informa\u00e7\u00e3o do Programa Nacional de Imuniza\u00e7\u00f5es (SI-PNI)", "community": 2, "community_name": "Immunization Data Management", "source_file": "conhecimento/SIPNI.md", "file_type": "document", "degree": 7}, {"id": "conhecimento_sipni_pni", "label": "Programa Nacional de Imuniza\u00e7\u00f5es (PNI)", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 12.7, "font": {"size": 0, "color": "#ffffff"}, "title": "Programa Nacional de Imuniza\u00e7\u00f5es (PNI)", "community": 2, "community_name": "Immunization Data Management", "source_file": "conhecimento/SIPNI.md", "file_type": "concept", "degree": 1}, {"id": "conhecimento_sipni_rnds", "label": "Rede Nacional de Dados em Sa\u00fade (RNDS)", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 12.7, "font": {"size": 0, "color": "#ffffff"}, "title": "Rede Nacional de Dados em Sa\u00fade (RNDS)", "community": 2, "community_name": "Immunization Data Management", "source_file": "conhecimento/SIPNI.md", "file_type": "document", "degree": 1}, {"id": "conhecimento_sipni_esus_pec", "label": "e-SUS PEC", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 12.7, "font": {"size": 0, "color": "#ffffff"}, "title": "e-SUS PEC", "community": 2, "community_name": "Immunization Data Management", "source_file": "conhecimento/SIPNI.md", "file_type": "document", "degree": 1}, {"id": "conhecimento_sipni_rede_de_frio", "label": "Rede de Frio", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 12.7, "font": {"size": 0, "color": "#ffffff"}, "title": "Rede de Frio", "community": 2, "community_name": "Immunization Data Management", "source_file": "conhecimento/SIPNI.md", "file_type": "document", "degree": 1}, {"id": "conhecimento_sipni_calendario_nacional", "label": "Calend\u00e1rio Nacional de Vacina\u00e7\u00e3o", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 12.7, "font": {"size": 0, "color": "#ffffff"}, "title": "Calend\u00e1rio Nacional de Vacina\u00e7\u00e3o", "community": 2, "community_name": "Immunization Data Management", "source_file": "conhecimento/SIPNI.md", "file_type": "document", "degree": 1}, {"id": "conhecimento_sipni_imunobiologicos", "label": "Imunobiol\u00f3gicos", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 12.7, "font": {"size": 0, "color": "#ffffff"}, "title": "Imunobiol\u00f3gicos", "community": 2, "community_name": "Immunization Data Management", "source_file": "conhecimento/SIPNI.md", "file_type": "document", "degree": 1}, {"id": "conhecimento_sipni_rqdv", "label": "Rastreador de Qualidade dos Dados Vacinais (RQDV)", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 12.7, "font": {"size": 0, "color": "#ffffff"}, "title": "Rastreador de Qualidade dos Dados Vacinais (RQDV)", "community": 2, "community_name": "Immunization Data Management", "source_file": "conhecimento/SIPNI.md", "file_type": "document", "degree": 1}];
+const RAW_EDGES = [{"from": "clinico_calendario_nacional_de_vacinacao", "to": "pni", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "conhecimento_imunobiologicos_readme", "to": "pni", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "conhecimento_programa_nacional_imunizacoes_readme", "to": "pni", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "clinico_calendario_nacional_de_vacinacao", "to": "si_pni", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "conhecimento_sistemas_readme", "to": "si_pni", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "clinico_calendario_nacional_de_vacinacao", "to": "e_sus_pec", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "conhecimento_sistemas_readme", "to": "e_sus_pec", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "clinico_calendario_nacional_de_vacinacao", "to": "rnds", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "conhecimento_sistemas_readme", "to": "rnds", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "clinico_calendario_nacional_de_vacinacao", "to": "rede_de_frio", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "conhecimento_imunobiologicos_readme", "to": "clinico_calendario_nacional_de_vacinacao", "label": "conceptually_related_to", "title": "conceptually_related_to [INFERRED]", "dashes": true, "width": 1, "color": {"opacity": 0.35}, "confidence": "INFERRED"}, {"from": "conhecimento_manifesto_da_base", "to": "clinico_calendario_nacional_de_vacinacao", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "conhecimento_readme", "to": "conhecimento_modelo_objeto_conhecimento", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "conhecimento_rede_de_frio", "to": "sistema_esus_pec", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "conhecimento_rede_de_frio", "to": "sistema_rnds", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "conhecimento_rede_de_frio", "to": "sistema_si_pni", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "docs_diario_de_bordo", "to": "docs_memorias_da_trilha", "label": "conceptually_related_to", "title": "conceptually_related_to [INFERRED]", "dashes": true, "width": 1, "color": {"opacity": 0.35}, "confidence": "INFERRED"}, {"from": "conhecimento_padrao_da_base_de_conhecimento", "to": "conhecimento_template_objeto_conhecimento", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "docs_ai_context", "to": "docs_arquitetura_arquitetura_da_trilha", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "docs_ai_context", "to": "docs_principios_da_plataforma", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "docs_ai_context", "to": "docs_visao_do_projeto", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "docs_home_versao_1", "to": "docs_arquitetura_arquitetura_da_trilha", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "docs_home_versao_1", "to": "docs_jornada_do_usuario", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "docs_home_versao_1", "to": "docs_publico_e_cenarios_de_uso", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "docs_home_versao_1", "to": "docs_visao_do_projeto", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "docs_jornada_do_usuario", "to": "docs_arquitetura_arquitetura_da_trilha", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "docs_jornada_do_usuario", "to": "docs_publico_e_cenarios_de_uso", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "docs_jornada_do_usuario", "to": "docs_visao_do_projeto", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "docs_principios_da_plataforma", "to": "docs_arquitetura_arquitetura_da_trilha", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "docs_principios_da_plataforma", "to": "docs_visao_do_projeto", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "docs_publico_e_cenarios_de_uso", "to": "docs_visao_do_projeto", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "docs_roadmap", "to": "docs_arquitetura_arquitetura_da_trilha", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "docs_roadmap", "to": "docs_visao_do_projeto", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "docs_visao_do_projeto", "to": "docs_arquitetura_arquitetura_da_trilha", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "docs_arquitetura_arquitetura_da_trilha", "to": "docs_arquitetura_arquitetura_da_base_de_conhecimento", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "docs_arquitetura_arquitetura_da_trilha", "to": "docs_arquitetura_arquitetura_do_grafo_semantico", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "docs_arquitetura_arquitetura_da_trilha", "to": "docs_arquitetura_arquitetura_dos_agentes_ia", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "docs_arquitetura_arquitetura_da_trilha", "to": "docs_arquitetura_fluxo_de_atualizacao_da_base", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "docs_arquitetura_arquitetura_da_trilha", "to": "docs_arquitetura_roadmap_da_arquitetura", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "conhecimento_sipni_rqdv", "to": "conhecimento_sipni_sipni", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "conhecimento_sipni_sipni", "to": "conhecimento_sipni_calendario_nacional", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "conhecimento_sipni_sipni", "to": "conhecimento_sipni_esus_pec", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "conhecimento_sipni_sipni", "to": "conhecimento_sipni_imunobiologicos", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "conhecimento_sipni_sipni", "to": "conhecimento_sipni_pni", "label": "conceptually_related_to", "title": "conceptually_related_to [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "conhecimento_sipni_sipni", "to": "conhecimento_sipni_rede_de_frio", "label": "references", "title": "references [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "conhecimento_sipni_sipni", "to": "conhecimento_sipni_rnds", "label": "shares_data_with", "title": "shares_data_with [INFERRED]", "dashes": true, "width": 1, "color": {"opacity": 0.35}, "confidence": "INFERRED"}];
+const LEGEND = [{"cid": 0, "color": "#4E79A7", "label": "AI and Platform Architecture", "count": 13}, {"cid": 1, "color": "#F28E2B", "label": "National Immunization Systems", "count": 10}, {"cid": 2, "color": "#E15759", "label": "Immunization Data Management", "count": 8}, {"cid": 3, "color": "#76B7B2", "label": "Health Information Networks", "count": 4}, {"cid": 4, "color": "#59A14F", "label": "Knowledge Object Documentation", "count": 2}, {"cid": 5, "color": "#EDC948", "label": "Knowledge Base Standards", "count": 2}, {"cid": 6, "color": "#B07AA1", "label": "Project Logs and Memories", "count": 2}, {"cid": 7, "color": "#FF9DA7", "label": "Change History", "count": 1}, {"cid": 8, "color": "#9C755F", "label": "Knowledge Base Architecture", "count": 1}, {"cid": 9, "color": "#BAB0AC", "label": "Quality Standards", "count": 1}, {"cid": 10, "color": "#4E79A7", "label": "Glossary of Terms", "count": 1}, {"cid": 11, "color": "#F28E2B", "label": "Editorial Guidelines", "count": 1}, {"cid": 12, "color": "#E15759", "label": "Immunobiological Data Model", "count": 1}, {"cid": 13, "color": "#76B7B2", "label": "BCG Vaccine Documentation", "count": 1}, {"cid": 14, "color": "#59A14F", "label": "Vaccine Data Model", "count": 1}, {"cid": 15, "color": "#EDC948", "label": "Knowledge Base Map", "count": 1}, {"cid": 16, "color": "#B07AA1", "label": "Knowledge Object Structure", "count": 1}, {"cid": 17, "color": "#FF9DA7", "label": "Metadata Standards", "count": 1}, {"cid": 18, "color": "#9C755F", "label": "Knowledge Object Framework", "count": 1}, {"cid": 19, "color": "#BAB0AC", "label": "National Immunization Program", "count": 1}, {"cid": 20, "color": "#4E79A7", "label": "Object Taxonomy", "count": 1}, {"cid": 21, "color": "#F28E2B", "label": "Project Backlog", "count": 1}, {"cid": 22, "color": "#E15759", "label": "Visual Identity Guidelines", "count": 1}, {"cid": 23, "color": "#76B7B2", "label": "Core Knowledge Base", "count": 1}, {"cid": 24, "color": "#59A14F", "label": "Immunization Trail Homepage", "count": 1}, {"cid": 25, "color": "#EDC948", "label": "Immunization Trail Documentation", "count": 1}];
+
+// HTML-escape helper — prevents XSS when injecting graph data into innerHTML
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+// Build vis datasets
+const nodesDS = new vis.DataSet(RAW_NODES.map(n => ({
+  id: n.id, label: n.label, color: n.color, size: n.size,
+  font: n.font, title: n.title,
+  _community: n.community, _community_name: n.community_name,
+  _source_file: n.source_file, _file_type: n.file_type, _degree: n.degree,
+})));
+
+const edgesDS = new vis.DataSet(RAW_EDGES.map((e, i) => ({
+  id: i, from: e.from, to: e.to,
+  label: '',
+  title: e.title,
+  dashes: e.dashes,
+  width: e.width,
+  color: e.color,
+  arrows: { to: { enabled: true, scaleFactor: 0.5 } },
+})));
+
+const container = document.getElementById('graph');
+const network = new vis.Network(container, { nodes: nodesDS, edges: edgesDS }, {
+  physics: {
+    enabled: true,
+    solver: 'forceAtlas2Based',
+    forceAtlas2Based: {
+      gravitationalConstant: -60,
+      centralGravity: 0.005,
+      springLength: 120,
+      springConstant: 0.08,
+      damping: 0.4,
+      avoidOverlap: 0.8,
+    },
+    stabilization: { iterations: 200, fit: true },
+  },
+  interaction: {
+    hover: true,
+    tooltipDelay: 100,
+    hideEdgesOnDrag: true,
+    navigationButtons: false,
+    keyboard: false,
+  },
+  nodes: { shape: 'dot', borderWidth: 1.5 },
+  edges: { smooth: { type: 'continuous', roundness: 0.2 }, selectionWidth: 3 },
+});
+
+network.once('stabilizationIterationsDone', () => {
+  network.setOptions({ physics: { enabled: false } });
+});
+
+function showInfo(nodeId) {
+  const n = nodesDS.get(nodeId);
+  if (!n) return;
+  const neighborIds = network.getConnectedNodes(nodeId);
+  const neighborItems = neighborIds.map(nid => {
+    const nb = nodesDS.get(nid);
+    const color = nb ? nb.color.background : '#555';
+    return `<span class="neighbor-link" style="border-left-color:${esc(color)}" onclick="focusNode(${JSON.stringify(nid)})">${esc(nb ? nb.label : nid)}</span>`;
+  }).join('');
+  document.getElementById('info-content').innerHTML = `
+    <div class="field"><b>${esc(n.label)}</b></div>
+    <div class="field">Type: ${esc(n._file_type || 'unknown')}</div>
+    <div class="field">Community: ${esc(n._community_name)}</div>
+    <div class="field">Source: ${esc(n._source_file || '-')}</div>
+    <div class="field">Degree: ${n._degree}</div>
+    ${neighborIds.length ? `<div class="field" style="margin-top:8px;color:#aaa;font-size:11px">Neighbors (${neighborIds.length})</div><div id="neighbors-list">${neighborItems}</div>` : ''}
+  `;
+}
+
+function focusNode(nodeId) {
+  network.focus(nodeId, { scale: 1.4, animation: true });
+  network.selectNodes([nodeId]);
+  showInfo(nodeId);
+}
+
+// Track hovered node — hover detection is more reliable than click params
+let hoveredNodeId = null;
+network.on('hoverNode', params => {
+  hoveredNodeId = params.node;
+  container.style.cursor = 'pointer';
+});
+network.on('blurNode', () => {
+  hoveredNodeId = null;
+  container.style.cursor = 'default';
+});
+container.addEventListener('click', () => {
+  if (hoveredNodeId !== null) {
+    showInfo(hoveredNodeId);
+    network.selectNodes([hoveredNodeId]);
+  }
+});
+network.on('click', params => {
+  if (params.nodes.length > 0) {
+    showInfo(params.nodes[0]);
+  } else if (hoveredNodeId === null) {
+    document.getElementById('info-content').innerHTML = '<span class="empty">Click a node to inspect it</span>';
+  }
+});
+
+const searchInput = document.getElementById('search');
+const searchResults = document.getElementById('search-results');
+searchInput.addEventListener('input', () => {
+  const q = searchInput.value.toLowerCase().trim();
+  searchResults.innerHTML = '';
+  if (!q) { searchResults.style.display = 'none'; return; }
+  const matches = RAW_NODES.filter(n => n.label.toLowerCase().includes(q)).slice(0, 20);
+  if (!matches.length) { searchResults.style.display = 'none'; return; }
+  searchResults.style.display = 'block';
+  matches.forEach(n => {
+    const el = document.createElement('div');
+    el.className = 'search-item';
+    el.textContent = n.label;
+    el.style.borderLeft = `3px solid ${n.color.background}`;
+    el.style.paddingLeft = '8px';
+    el.onclick = () => {
+      network.focus(n.id, { scale: 1.5, animation: true });
+      network.selectNodes([n.id]);
+      showInfo(n.id);
+      searchResults.style.display = 'none';
+      searchInput.value = '';
+    };
+    searchResults.appendChild(el);
+  });
+});
+document.addEventListener('click', e => {
+  if (!searchResults.contains(e.target) && e.target !== searchInput)
+    searchResults.style.display = 'none';
+});
+
+const hiddenCommunities = new Set();
+
+const selectAllCb = document.getElementById('select-all-cb');
+
+function updateSelectAllState() {
+  const total = LEGEND.length;
+  const hidden = hiddenCommunities.size;
+  selectAllCb.checked = hidden === 0;
+  selectAllCb.indeterminate = hidden > 0 && hidden < total;
+}
+
+function toggleAllCommunities(hide) {
+  document.querySelectorAll('.legend-item').forEach(item => {
+    hide ? item.classList.add('dimmed') : item.classList.remove('dimmed');
+  });
+  document.querySelectorAll('.legend-cb').forEach(cb => {
+    cb.checked = !hide;
+  });
+  LEGEND.forEach(c => {
+    if (hide) hiddenCommunities.add(c.cid); else hiddenCommunities.delete(c.cid);
+  });
+  const updates = RAW_NODES.map(n => ({ id: n.id, hidden: hide }));
+  nodesDS.update(updates);
+  updateSelectAllState();
+}
+
+const legendEl = document.getElementById('legend');
+LEGEND.forEach(c => {
+  const item = document.createElement('div');
+  item.className = 'legend-item';
+  const cb = document.createElement('input');
+  cb.type = 'checkbox';
+  cb.className = 'legend-cb';
+  cb.checked = true;
+  cb.addEventListener('change', (e) => {
+    e.stopPropagation();
+    if (cb.checked) {
+      hiddenCommunities.delete(c.cid);
+      item.classList.remove('dimmed');
+    } else {
+      hiddenCommunities.add(c.cid);
+      item.classList.add('dimmed');
+    }
+    const updates = RAW_NODES
+      .filter(n => n.community === c.cid)
+      .map(n => ({ id: n.id, hidden: !cb.checked }));
+    nodesDS.update(updates);
+    updateSelectAllState();
+  });
+  item.innerHTML = `<div class="legend-dot" style="background:${c.color}"></div>
+    <span class="legend-label">${c.label}</span>
+    <span class="legend-count">${c.count}</span>`;
+  item.prepend(cb);
+  item.onclick = (e) => {
+    if (e.target === cb) return;
+    cb.checked = !cb.checked;
+    cb.dispatchEvent(new Event('change'));
+  };
+  legendEl.appendChild(item);
+});
+</script>
+<script>
+// Render hyperedges as shaded regions
+const hyperedges = [{"id": "experiencia_do_usuario", "label": "Defini\u00e7\u00e3o da Experi\u00eancia do Usu\u00e1rio", "nodes": ["docs_home_versao_1", "docs_jornada_do_usuario", "docs_publico_e_cenarios_de_uso"], "relation": "participate_in", "confidence": "INFERRED", "confidence_score": 0.9, "source_file": "docs/HOME_VERSAO_1.md"}, {"id": "projeto_visao_estrategica", "label": "Vis\u00e3o Estrat\u00e9gica do Projeto", "nodes": ["docs_visao_do_projeto", "docs_principios_da_plataforma", "docs_roadmap", "docs_ai_context"], "relation": "participate_in", "confidence": "INFERRED", "confidence_score": 0.9, "source_file": "docs/VISAO_DO_PROJETO.md"}, {"id": "arquitetura_core_docs", "label": "Documenta\u00e7\u00e3o de Arquitetura", "nodes": ["docs_arquitetura_arquitetura_da_trilha", "docs_arquitetura_arquitetura_da_base_de_conhecimento", "docs_arquitetura_arquitetura_do_grafo_semantico", "docs_arquitetura_arquitetura_dos_agentes_ia", "docs_arquitetura_fluxo_de_atualizacao_da_base", "docs_arquitetura_roadmap_da_arquitetura"], "relation": "form", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "docs/arquitetura/ARQUITETURA_DA_TRILHA.md"}, {"id": "vacinacao_data_flow", "label": "Fluxo de Dados de Vacina\u00e7\u00e3o", "nodes": ["conhecimento_sipni_sipni", "conhecimento_sipni_rnds", "conhecimento_sipni_rqdv"], "relation": "participate_in", "confidence": "EXTRACTED", "confidence_score": 0.85, "source_file": "conhecimento/SIPNI.md"}, {"id": "base_conhecimento_structure", "label": "Estrutura da Base de Conhecimento", "nodes": ["conhecimento_readme", "conhecimento_manifesto_da_base", "conhecimento_mapa_da_base"], "relation": "form", "confidence": "EXTRACTED", "confidence_score": 0.9, "source_file": "conhecimento/README.md"}, {"id": "trilha_imunizacao_core_systems", "label": "Sistemas Centrais da Trilha de Imuniza\u00e7\u00e3o", "nodes": ["si_pni", "e_sus_pec", "rnds"], "relation": "participate_in", "confidence": "EXTRACTED", "confidence_score": 0.95, "source_file": "conhecimento/sistemas/README.md"}, {"id": "knowledge_base_structure", "label": "Knowledge Base Structural Framework", "nodes": ["conhecimento_arquitetura_da_base", "conhecimento_modelo_objeto_de_conhecimento", "conhecimento_padrao_de_metadados", "conhecimento_taxonomia_dos_objetos", "conhecimento_criterios_de_qualidade"], "relation": "form", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"id": "immunization_domain_entities", "label": "Immunization Domain Entities", "nodes": ["conhecimento_programa_nacional_imunizacoes_pni", "conhecimento_imunobiologicos_vacinas_bcg_bcg"], "relation": "participate_in", "confidence": "EXTRACTED", "confidence_score": 1.0}];
+// afterDrawing passes ctx already transformed to network coordinate space.
+// Draw node positions raw — no manual pan/zoom/DPR math needed.
+network.on('afterDrawing', function(ctx) {
+    hyperedges.forEach(h => {
+        const positions = h.nodes
+            .map(nid => network.getPositions([nid])[nid])
+            .filter(p => p !== undefined);
+        if (positions.length < 2) return;
+        ctx.save();
+        ctx.globalAlpha = 0.12;
+        ctx.fillStyle = '#6366f1';
+        ctx.strokeStyle = '#6366f1';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        // Centroid and expanded hull in network coordinates
+        const cx = positions.reduce((s, p) => s + p.x, 0) / positions.length;
+        const cy = positions.reduce((s, p) => s + p.y, 0) / positions.length;
+        const expanded = positions.map(p => ({
+            x: cx + (p.x - cx) * 1.15,
+            y: cy + (p.y - cy) * 1.15
+        }));
+        ctx.moveTo(expanded[0].x, expanded[0].y);
+        expanded.slice(1).forEach(p => ctx.lineTo(p.x, p.y));
+        ctx.closePath();
+        ctx.fill();
+        ctx.globalAlpha = 0.4;
+        ctx.stroke();
+        // Label
+        ctx.globalAlpha = 0.8;
+        ctx.fillStyle = '#4f46e5';
+        ctx.font = 'bold 11px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(h.label, cx, cy - 5);
+        ctx.restore();
+    });
+});
+</script>
+</body>
+</html>
