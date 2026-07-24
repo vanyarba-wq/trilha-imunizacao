@@ -18,9 +18,11 @@ Este documento apresenta a arquitetura geral da Trilha de Imunização, descreve
 
 ## Propósito
 
-A Trilha de Imunização é uma plataforma em construção, criada para reunir, organizar e conectar o conhecimento oficial e os diferentes componentes do ecossistema de apoio à imunização no Brasil.
+A Trilha de Imunização tem como propósito reunir, organizar e conectar o conhecimento oficial relacionado à imunização, integrando, em um ambiente único, o conhecimento do ecossistema brasileiro de imunização para consulta, aprendizagem e contextualização.
 
-Seu propósito é facilitar o acesso à informação confiável, apoiar a educação permanente e contribuir para a prática dos profissionais de saúde, sempre fundamentada nas normas, manuais e documentos oficiais.
+Seu objetivo é facilitar o acesso à informação confiável, apoiar a tomada de decisão, promover a educação permanente, contribuir para a prática dos profissionais de saúde e preservar o conhecimento técnico fundamentado nas normas, manuais e documentos oficiais.
+
+A arquitetura da Trilha foi concebida para permitir a evolção contínua da plataforma, organizando o conhecimento em domínios, conectando informações por meio de um grafo semântico e oferecendo suporte à consulta, ao aprendizado e à colaboração entre profissionais e agentes de IA.
 
 Mais do que reunir conteúdos, a Trilha busca mostrar como os diferentes sistemas, instituições, documentos e processos se relacionam, oferecendo uma visão integrada da imunização brasileira.
 
